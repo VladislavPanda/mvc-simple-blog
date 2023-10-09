@@ -10,6 +10,7 @@ class Request
         public readonly array $server,
         public readonly array $get,
         public readonly array $post,
+        public readonly array $files,
         public readonly array $cookie
     ) {
     }
@@ -21,7 +22,7 @@ class Request
      */
     public static function createFromSuperGlobals(): static
     {
-        return new static($_SERVER, $_GET, $_POST, $_COOKIE);
+        return new static($_SERVER, $_GET, $_POST, $_FILES, $_COOKIE);
     }
 
     /**

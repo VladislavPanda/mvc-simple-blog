@@ -8,13 +8,21 @@ use Core\Routing\Router;
 class Application
 {
     /**
+     * @var ServiceContainer
+     */
+    private ServiceContainer $serviceContainer;
+
+    public function __construct()
+    {
+        $this->serviceContainer = new ServiceContainer();
+    }
+
+    /**
      * @return void
      */
     public function run(): void
     {
-        $request = Request::createFromSuperGlobals();
-
-        $router = new Router($request->uri(), $request->requestMethod());
+        $router = $this->serviceContainer->getService(Router::class);
         $router->dispatch();
     }
 }

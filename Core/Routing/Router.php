@@ -28,12 +28,14 @@ class Router
     {
         $this->currentUri = $currentUri;
         $this->httpMethod = $httpMethod;
-        $this->routes = $this->initRoutes();
+        $this->routes = $this->groupRoutes();
     }
 
     public function dispatch()
     {
-        echo $this->currentUri;
+        echo '<pre>';
+        var_dump($this->routes);
+        echo '</pre>';
 
     }
 
@@ -42,9 +44,8 @@ class Router
      *
      * @return array
      */
-    private function initRoutes(): array
+    private function groupRoutes(): array
     {
-        $routes = [];
         $appRoutes = require __DIR__ . '/../../routes/routes.php';
 
         foreach ($appRoutes as $appRoute) {
@@ -54,6 +55,6 @@ class Router
             ];
         }
 
-        return $routes;
+        return $routes ?? [];
     }
 }
