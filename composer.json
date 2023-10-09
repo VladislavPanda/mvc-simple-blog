@@ -1,0 +1,13 @@
+{
+    "name": "vladislav-panda/mvc-simple-blog",
+    "description": "Simple blog, created with basic MVC structure",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    }
+}
