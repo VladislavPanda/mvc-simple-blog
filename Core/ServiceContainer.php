@@ -6,6 +6,7 @@ namespace Core;
 
 use Core\Http\Request;
 use Core\Routing\Router;
+use Core\View\View;
 
 class ServiceContainer
 {
@@ -34,9 +35,11 @@ class ServiceContainer
     private function initServices(): void
     {
         $this->services[Request::class] = Request::createFromSuperGlobals();
+        $this->services[View::class] = new View();
         $this->services[Router::class] = new Router(
             $this->getService(Request::class)->uri(),
-            $this->getService(Request::class)->requestMethod()
+            $this->getService(Request::class)->requestMethod(),
+            $this->getService(View::class)
         );
     }
 }

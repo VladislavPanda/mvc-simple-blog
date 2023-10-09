@@ -2,10 +2,12 @@
 
 namespace App\Controllers;
 
-class ArticleController
+use Core\Controllers\Controller;
+
+class ArticleController extends Controller
 {
     public function index()
     {
-        echo 'article index';
+        echo $this->view->make('single')->render();
     }
 }

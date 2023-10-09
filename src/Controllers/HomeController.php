@@ -2,11 +2,12 @@
 
 namespace App\Controllers;
 
-class HomeController
+use Core\Controllers\Controller;
+
+class HomeController extends Controller
 {
     public function index()
     {
-        echo 'home index';
-
+        echo $this->view->make('welcome')->render();
     }
 }

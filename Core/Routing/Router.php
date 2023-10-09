@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Routing;
 
+use Core\View\View;
+
 class Router
 {
     /**
@@ -17,6 +19,11 @@ class Router
     private string $httpMethod;
 
     /**
+     * @var View
+     */
+    private View $view;
+
+    /**
      * @var array
      */
     private array $routes = [
@@ -24,19 +31,25 @@ class Router
         'POST' => []
     ];
 
-    public function __construct($currentUri, $httpMethod)
+    public function __construct(string $currentUri, string $httpMethod, View $view)
     {
         $this->currentUri = $currentUri;
         $this->httpMethod = $httpMethod;
+        $this->view = $view;
         $this->routes = $this->groupRoutes();
     }
 
     public function dispatch()
     {
-        echo '<pre>';
-        var_dump($this->routes);
-        echo '</pre>';
+        $route = $this->routes[$this->httpMethod][$this->currentUri];
 
+        if ($route) {
+            $controller = new $route['controllerName'];
+            call_user_func([$controller, 'setView'], $this->view);
+            call_user_func([$controller, $route['actionName']]);
+        } else {
+            echo '404 not found';
+        }
     }
 
     /**
