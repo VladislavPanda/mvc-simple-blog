@@ -4,10 +4,10 @@
 
 use App\Controllers\ArticleController;
 use App\Controllers\HomeController;
-use App\Routing\Route;
+use Core\Routing\Route;
 
 return [
     Route::get('/', [HomeController::class, 'index']),
-    Route::get('/', [ArticleController::class, 'index']),
+    Route::get('/articles', [ArticleController::class, 'index']),
     Route::post('/article/add', [ArticleController::class, 'save'])
 ];

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Routing;
+namespace Core\Routing;
 
 class Router
 {
@@ -12,24 +12,28 @@ class Router
     private string $currentUri;
 
     /**
-     * @var array|mixed
+     * @var string
+     */
+    private string $httpMethod;
+
+    /**
+     * @var array
      */
     private array $routes = [
         'GET' => [],
         'POST' => []
     ];
 
-    public function __construct($currentUri)
+    public function __construct($currentUri, $httpMethod)
     {
         $this->currentUri = $currentUri;
+        $this->httpMethod = $httpMethod;
         $this->routes = $this->initRoutes();
     }
 
     public function dispatch()
     {
-        echo '<pre>';
-        var_dump($this->routes);
-        echo '</pre>';
+        echo $this->currentUri;
 
     }
 

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Routing;
+namespace Core\Routing;
 
 class Route
 {
