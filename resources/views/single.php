@@ -20,17 +20,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+    <link rel="stylesheet" href="assets/fonts/icomoon/style.css">
+    <link rel="stylesheet" href="assets/fonts/flaticon/font/flaticon.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 
-    <link rel="stylesheet" href="css/tiny-slider.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="css/glightbox.min.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/tiny-slider.css">
+    <link rel="stylesheet" href="assets/css/aos.css">
+    <link rel="stylesheet" href="assets/css/glightbox.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
-    <link rel="stylesheet" href="css/flatpickr.min.css">
+    <link rel="stylesheet" href="assets/css/flatpickr.min.css">
 
 
     <title>Blogy &mdash; Free Bootstrap 5 Website Template by Untree.co</title>
@@ -46,71 +46,16 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
-<nav class="site-nav">
-    <div class="container">
-        <div class="menu-bg-wrap">
-            <div class="site-navigation">
-                <div class="row g-0 align-items-center">
-                    <div class="col-2">
-                        <a href="index.html" class="logo m-0 float-start">Blogy<span class="text-primary">.</span></a>
-                    </div>
-                    <div class="col-8 text-center">
-                        <form action="#" class="search-form d-inline-block d-lg-none">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="bi-search"></span>
-                        </form>
+<?php $view->include('header') ?>
 
-                        <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
-                            <li><a href="index.html">Home</a></li>
-                            <li class="has-children active">
-                                <a href="category.html">Pages</a>
-                                <ul class="dropdown">
-                                    <li><a href="search-result.html">Search Result</a></li>
-                                    <li><a href="blog.html">Blog</a></li>
-                                    <li class="active"><a href="single.html">Blog Single</a></li>
-                                    <li><a href="category.html">Category</a></li>
-                                    <li><a href="about.html">About</a></li>
-                                    <li><a href="contact.html">Contact Us</a></li>
-                                    <li><a href="#">Menu One</a></li>
-                                    <li><a href="#">Menu Two</a></li>
-                                    <li class="has-children">
-                                        <a href="#">Dropdown</a>
-                                        <ul class="dropdown">
-                                            <li><a href="#">Sub Menu One</a></li>
-                                            <li><a href="#">Sub Menu Two</a></li>
-                                            <li><a href="#">Sub Menu Three</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li><a href="category.html">Culture</a></li>
-                            <li><a href="category.html">Business</a></li>
-                            <li><a href="category.html">Politics</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-2 text-end">
-                        <a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
-                            <span></span>
-                        </a>
-                        <form action="#" class="search-form d-none d-lg-inline-block">
-                            <input type="text" class="form-control" placeholder="Search...">
-                            <span class="bi-search"></span>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</nav>
-
-<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('images/hero_5.jpg');">
+<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('assets/images/hero_5.jpg');">
     <div class="container">
         <div class="row same-height justify-content-center">
             <div class="col-md-6">
                 <div class="post-entry text-center">
                     <h1 class="mb-4">Don’t assume your user data in the cloud is safe</h1>
                     <div class="post-meta align-items-center text-center">
-                        <figure class="author-figure mb-0 me-3 d-inline-block"><img src="images/person_1.jpg" alt="Image" class="img-fluid"></figure>
+                        <figure class="author-figure mb-0 me-3 d-inline-block"><img src="assets/images/person_1.jpg" alt="Image" class="img-fluid"></figure>
                         <span class="d-inline-block mt-1">By Carl Atkinson</span>
                         <span>&nbsp;-&nbsp; February 10, 2019</span>
                     </div>
@@ -133,13 +78,13 @@
                     <p>Quis eius aspernatur, eaque culpa cumque reiciendis, nobis at earum assumenda similique ut? Aperiam vel aut, ex exercitationem eos consequuntur eaque culpa totam, deserunt, aspernatur quae eveniet hic provident ullam tempora error repudiandae sapiente illum rerum itaque voluptatem. Commodi, sequi.</p>
                     <div class="row my-4">
                         <div class="col-md-12 mb-4">
-                            <img src="images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded">
+                            <img src="assets/images/hero_1.jpg" alt="Image placeholder" class="img-fluid rounded">
                         </div>
                         <div class="col-md-6 mb-4">
-                            <img src="images/img_2_horizontal.jpg" alt="Image placeholder" class="img-fluid rounded">
+                            <img src="assets/images/img_2_horizontal.jpg" alt="Image placeholder" class="img-fluid rounded">
                         </div>
                         <div class="col-md-6 mb-4">
-                            <img src="images/img_3_horizontal.jpg" alt="Image placeholder" class="img-fluid rounded">
+                            <img src="assets/images/img_3_horizontal.jpg" alt="Image placeholder" class="img-fluid rounded">
                         </div>
                     </div>
                     <p>Quibusdam autem, quas molestias recusandae aperiam molestiae modi qui ipsam vel. Placeat tenetur veritatis tempore quos impedit dicta, error autem, quae sint inventore ipsa quidem. Quo voluptate quisquam reiciendis, minus, animi minima eum officia doloremque repellat eos, odio doloribus cum.</p>
@@ -161,7 +106,7 @@
                     <ul class="comment-list">
                         <li class="comment">
                             <div class="vcard">
-                                <img src="images/person_1.jpg" alt="Image placeholder">
+                                <img src="assets/images/person_1.jpg" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>Jean Doe</h3>
@@ -173,7 +118,7 @@
 
                         <li class="comment">
                             <div class="vcard">
-                                <img src="images/person_2.jpg" alt="Image placeholder">
+                                <img src="assets/images/person_2.jpg" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>Jean Doe</h3>
@@ -185,7 +130,7 @@
                             <ul class="children">
                                 <li class="comment">
                                     <div class="vcard">
-                                        <img src="images/person_3.jpg" alt="Image placeholder">
+                                        <img src="assets/images/person_3.jpg" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
                                         <h3>Jean Doe</h3>
@@ -198,7 +143,7 @@
                                     <ul class="children">
                                         <li class="comment">
                                             <div class="vcard">
-                                                <img src="images/person_4.jpg" alt="Image placeholder">
+                                                <img src="assets/images/person_4.jpg" alt="Image placeholder">
                                             </div>
                                             <div class="comment-body">
                                                 <h3>Jean Doe</h3>
@@ -210,7 +155,7 @@
                                             <ul class="children">
                                                 <li class="comment">
                                                     <div class="vcard">
-                                                        <img src="images/person_5.jpg" alt="Image placeholder">
+                                                        <img src="assets/images/person_5.jpg" alt="Image placeholder">
                                                     </div>
                                                     <div class="comment-body">
                                                         <h3>Jean Doe</h3>
@@ -228,7 +173,7 @@
 
                         <li class="comment">
                             <div class="vcard">
-                                <img src="images/person_1.jpg" alt="Image placeholder">
+                                <img src="assets/images/person_1.jpg" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
                                 <h3>Jean Doe</h3>
@@ -282,7 +227,7 @@
                 <!-- END sidebar-box -->
                 <div class="sidebar-box">
                     <div class="bio text-center">
-                        <img src="images/person_2.jpg" alt="Image Placeholder" class="img-fluid mb-3">
+                        <img src="assets/images/person_2.jpg" alt="Image Placeholder" class="img-fluid mb-3">
                         <div class="bio-body">
                             <h2>Hannah Anderson</h2>
                             <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem facilis sunt repellendus excepturi beatae porro debitis voluptate nulla quo veniam fuga sit molestias minus.</p>
@@ -303,7 +248,7 @@
                         <ul>
                             <li>
                                 <a href="">
-                                    <img src="images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
+                                    <img src="assets/images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
                                     <div class="text">
                                         <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
                                         <div class="post-meta">
@@ -314,7 +259,7 @@
                             </li>
                             <li>
                                 <a href="">
-                                    <img src="images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
+                                    <img src="assets/images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
                                     <div class="text">
                                         <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
                                         <div class="post-meta">
@@ -325,7 +270,7 @@
                             </li>
                             <li>
                                 <a href="">
-                                    <img src="images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
+                                    <img src="assets/images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
                                     <div class="text">
                                         <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
                                         <div class="post-meta">
@@ -386,7 +331,7 @@
             <div class="col-md-6 col-lg-3">
                 <div class="blog-entry">
                     <a href="single.html" class="img-link">
-                        <img src="images/img_1_horizontal.jpg" alt="Image" class="img-fluid">
+                        <img src="assets/images/img_1_horizontal.jpg" alt="Image" class="img-fluid">
                     </a>
                     <span class="date">Apr. 14th, 2022</span>
                     <h2><a href="single.html">Thought you loved Python? Wait until you meet Rust</a></h2>
@@ -397,7 +342,7 @@
             <div class="col-md-6 col-lg-3">
                 <div class="blog-entry">
                     <a href="single.html" class="img-link">
-                        <img src="images/img_2_horizontal.jpg" alt="Image" class="img-fluid">
+                        <img src="assets/images/img_2_horizontal.jpg" alt="Image" class="img-fluid">
                     </a>
                     <span class="date">Apr. 14th, 2022</span>
                     <h2><a href="single.html">Startup vs corporate: What job suits you best?</a></h2>
@@ -408,7 +353,7 @@
             <div class="col-md-6 col-lg-3">
                 <div class="blog-entry">
                     <a href="single.html" class="img-link">
-                        <img src="images/img_3_horizontal.jpg" alt="Image" class="img-fluid">
+                        <img src="assets/images/img_3_horizontal.jpg" alt="Image" class="img-fluid">
                     </a>
                     <span class="date">Apr. 14th, 2022</span>
                     <h2><a href="single.html">UK sees highest inflation in 30 years</a></h2>
@@ -419,7 +364,7 @@
             <div class="col-md-6 col-lg-3">
                 <div class="blog-entry">
                     <a href="single.html" class="img-link">
-                        <img src="images/img_4_horizontal.jpg" alt="Image" class="img-fluid">
+                        <img src="assets/images/img_4_horizontal.jpg" alt="Image" class="img-fluid">
                     </a>
                     <span class="date">Apr. 14th, 2022</span>
                     <h2><a href="single.html">Don’t assume your user data in the cloud is safe</a></h2>
@@ -432,108 +377,7 @@
 </section>
 <!-- End posts-entry -->
 
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <div class="widget">
-                    <h3 class="mb-4">About</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                </div> <!-- /.widget -->
-                <div class="widget">
-                    <h3>Social</h3>
-                    <ul class="list-unstyled social">
-                        <li><a href="#"><span class="icon-instagram"></span></a></li>
-                        <li><a href="#"><span class="icon-twitter"></span></a></li>
-                        <li><a href="#"><span class="icon-facebook"></span></a></li>
-                        <li><a href="#"><span class="icon-linkedin"></span></a></li>
-                        <li><a href="#"><span class="icon-pinterest"></span></a></li>
-                        <li><a href="#"><span class="icon-dribbble"></span></a></li>
-                    </ul>
-                </div> <!-- /.widget -->
-            </div> <!-- /.col-lg-4 -->
-            <div class="col-lg-4 ps-lg-5">
-                <div class="widget">
-                    <h3 class="mb-4">Company</h3>
-                    <ul class="list-unstyled float-start links">
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
-                        <li><a href="#">Vision</a></li>
-                        <li><a href="#">Mission</a></li>
-                        <li><a href="#">Terms</a></li>
-                        <li><a href="#">Privacy</a></li>
-                    </ul>
-                    <ul class="list-unstyled float-start links">
-                        <li><a href="#">Partners</a></li>
-                        <li><a href="#">Business</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Creative</a></li>
-                    </ul>
-                </div> <!-- /.widget -->
-            </div> <!-- /.col-lg-4 -->
-            <div class="col-lg-4">
-                <div class="widget">
-                    <h3 class="mb-4">Recent Post Entry</h3>
-                    <div class="post-entry-footer">
-                        <ul>
-                            <li>
-                                <a href="">
-                                    <img src="images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                            <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                            <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="">
-                                    <img src="images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-                                    <div class="text">
-                                        <h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-                                        <div class="post-meta">
-                                            <span class="mr-2">March 15, 2018 </span>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-
-
-                </div> <!-- /.widget -->
-            </div> <!-- /.col-lg-4 -->
-        </div> <!-- /.row -->
-
-        <div class="row mt-5">
-            <div class="col-12 text-center">
-                <!--
-                    **==========
-                    NOTE:
-                    Please don't remove this copyright link unless you buy the license here https://untree.co/license/
-                    **==========
-                  -->
-
-                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> <!-- License information: https://untree.co/license/ -->
-                </p>
-            </div>
-        </div>
-    </div> <!-- /.container -->
-</footer> <!-- /.site-footer -->
+<?php $view->include('footer') ?>
 
 <!-- Preloader -->
 <div id="overlayer"></div>
@@ -544,17 +388,17 @@
 </div>
 
 
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/tiny-slider.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
+<script src="assets/js/tiny-slider.js"></script>
 
-<script src="js/flatpickr.min.js"></script>
+<script src="assets/js/flatpickr.min.js"></script>
 
 
-<script src="js/aos.js"></script>
-<script src="js/glightbox.min.js"></script>
-<script src="js/navbar.js"></script>
-<script src="js/counter.js"></script>
-<script src="js/custom.js"></script>
+<script src="assets/js/aos.js"></script>
+<script src="assets/js/glightbox.min.js"></script>
+<script src="assets/js/navbar.js"></script>
+<script src="assets/js/counter.js"></script>
+<script src="assets/js/custom.js"></script>
 
 
 </body>
