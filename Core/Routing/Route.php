@@ -21,8 +21,8 @@ class Route
         private string $httpMethod,
         array $handler
     ) {
-        $this->controllerName = $handler[0];
-        $this->actionName = $handler[1];
+        // Controller name is item with 0 index, action name is item with 1 index
+        list($this->controllerName, $this->actionName) = $handler;
     }
 
     /**

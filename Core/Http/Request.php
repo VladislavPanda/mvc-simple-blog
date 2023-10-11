@@ -8,7 +8,7 @@ class Request
 {
     public function __construct(
         public readonly array $server,
-        public readonly array $get,
+        public array $get,
         public readonly array $post,
         public readonly array $files,
         public readonly array $cookie
@@ -55,5 +55,16 @@ class Request
     public function post(): array
     {
         return $this->post;
+    }
+
+    /**
+     * Method for setting query string params in case params in app route (because of human-readable routes using)
+     *
+     * @param array $getParams
+     * @return void
+     */
+    public function setGet(array $getParams): void
+    {
+        $this->get = $getParams;
     }
 }
