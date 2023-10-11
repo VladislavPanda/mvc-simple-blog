@@ -23,6 +23,6 @@ class Application
     public function run(): void
     {
         $router = $this->serviceContainer->getService(Router::class);
-        $router->dispatch();
+        $router->run();
     }
 }

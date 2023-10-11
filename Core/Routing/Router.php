@@ -4,25 +4,12 @@ declare(strict_types=1);
 
 namespace Core\Routing;
 
+use Core\Http\Request;
+use Core\Routing\RouteDispatcher;
 use Core\View\View;
 
 class Router
 {
-    /**
-     * @var string
-     */
-    private string $currentUri;
-
-    /**
-     * @var string
-     */
-    private string $httpMethod;
-
-    /**
-     * @var View
-     */
-    private View $view;
-
     /**
      * @var array
      */
@@ -31,17 +18,22 @@ class Router
         'POST' => []
     ];
 
-    public function __construct(string $currentUri, string $httpMethod, View $view)
-    {
-        $this->currentUri = $currentUri;
-        $this->httpMethod = $httpMethod;
-        $this->view = $view;
+    /**
+     * @var \Core\Routing\RouteDispatcher
+     */
+    private RouteDispatcher $routeDispatcher;
+
+    public function __construct(
+        private Request $request,
+        private View $view
+    ) {
         $this->routes = $this->groupRoutes();
+        $this->routeDispatcher = new RouteDispatcher($this->request, $this->routes);
     }
 
-    public function dispatch()
+    public function run()
     {
-        $route = $this->routes[$this->httpMethod][$this->currentUri];
+        $route = $this->routeDispatcher->process();
 
         if ($route) {
             $controller = new $route['controllerName'];
