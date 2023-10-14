@@ -12,6 +12,7 @@ class RouteDispatcher
     private const REMOVE_SPEC_CHARS_PATTERN = '/[^a-zA-Z0-9\/]/';
     private const REMOVE_MULTIPLE_SLASHES_PATTERN = '/([^:])(\/{2,})/';
     private const PARAMS_EXTRACTION_PATTERN = '/{.*}/';
+    private const CURLY_BRACES_REMOVE_PATTERN = '/[{}]/m';
 
     /**
      * @var string
@@ -54,6 +55,10 @@ class RouteDispatcher
 
             $this->mapParams($routeExploded);
 
+            if (! empty($this->mappedParams)) {
+                $this->request->setGet($this->mappedParams);
+            }
+
             return $route;
         }
 
@@ -61,6 +66,8 @@ class RouteDispatcher
     }
 
     /**
+     * Method for comparing every segment of exploded current URI and every route in App
+     *
      * @param array $routeExploded
      * @return bool
      */
@@ -80,6 +87,8 @@ class RouteDispatcher
     }
 
     /**
+     * Method for defining if there is a param in every segment of the route and extracting it
+     *
      * @param array $routeExploded
      * @return void
      */
@@ -87,7 +96,9 @@ class RouteDispatcher
     {
         foreach ($routeExploded as $index => $param) {
             if (preg_match(RouteDispatcher::PARAMS_EXTRACTION_PATTERN, $param)) {
-                $this->mappedParams[] = (int) $this->uriExploded[$index];
+                $param = preg_replace(RouteDispatcher::CURLY_BRACES_REMOVE_PATTERN, '', $param);
+                $param = str_replace('$', '', $param);
+                $this->mappedParams[$param] = (int) $this->uriExploded[$index];
             }
         }
 
