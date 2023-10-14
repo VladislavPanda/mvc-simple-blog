@@ -37,16 +37,19 @@
 </head>
 <body>
 
-<div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close">
-            <span class="icofont-close js-menu-toggle"></span>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
         </div>
+        <div class="site-mobile-menu-body"></div>
     </div>
-    <div class="site-mobile-menu-body"></div>
-</div>
 
-<?php $view->include('header') ?>
+    <?php
+        /** @var \Core\View\View $view */
+        $view->include('header')
+    ?>
 
 <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('assets/images/hero_5.jpg');">
     <div class="container">
@@ -375,31 +378,30 @@
         </div>
     </div>
 </section>
-<!-- End posts-entry -->
+    <!-- End posts-entry -->
 
-<?php $view->include('footer') ?>
+    <?php $view->include('footer') ?>
 
-<!-- Preloader -->
-<div id="overlayer"></div>
-<div class="loader">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
-</div>
 
 
-<script src="assets/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
 
-<script src="assets/js/flatpickr.min.js"></script>
+    <script src="assets/js/flatpickr.min.js"></script>
 
 
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/glightbox.min.js"></script>
-<script src="assets/js/navbar.js"></script>
-<script src="assets/js/counter.js"></script>
-<script src="assets/js/custom.js"></script>
-
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/counter.js"></script>
+    <script src="assets/js/custom.js"></script>
 
 </body>
 </html>

@@ -53,14 +53,14 @@ class View
         }
 
         ob_start();
-        require $include;
+        require_once $include;
         echo ob_get_clean();
     }
 
     /**
-     * @return string
+     * @return string|false
      */
-    public function render(): string
+    public function render(): string|bool
     {
         ob_start();
         extract(['view' => $this]); //$this->parameters);

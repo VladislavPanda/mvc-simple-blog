@@ -38,75 +38,78 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
-<?php $view->include('header'); ?>
+    <?php
+        /** @var \Core\View\View $view */
+        $view->include('header');
+    ?>
 
-<section class="section bg-light">
-    <div class="container">
-        <div class="row align-items-stretch retro-layout">
-            <div class="col-md-4">
-                <a href="/articles/show/{{ $article['id'] }}" class="h-entry mb-30 v-height gradient">
+    <section class="section bg-light">
+        <div class="container">
+            <div class="row align-items-stretch retro-layout">
+                <div class="col-md-4">
+                    <a href="/articles/show/{{ $article['id'] }}" class="h-entry mb-30 v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('');"></div>
+                        <div class="featured-img" style="background-image: url('');"></div>
 
-                    <div class="text">
-                            <span class="date">
-                                14.09.2023
-                            </span>
-                        <h2>
-                            Название
-                        </h2>
-                        <h6 style="color: white">
-                            Категория: тест
-                        </h6>
-                        <h6 style="color: white">
-                            Автор: тест
-                        </h6>
-                    </div>
-                </a>
-                <!--<a href="single.html" class="h-entry v-height gradient">
+                        <div class="text">
+                                <span class="date">
+                                    14.09.2023
+                                </span>
+                            <h2>
+                                Название
+                            </h2>
+                            <h6 style="color: white">
+                                Категория: тест
+                            </h6>
+                            <h6 style="color: white">
+                                Автор: тест
+                            </h6>
+                        </div>
+                    </a>
+                    <!--<a href="single.html" class="h-entry v-height gradient">
 
-                    <div class="featured-img" style="background-image: url('images/img_5_horizontal.jpg');"></div>
+                        <div class="featured-img" style="background-image: url('images/img_5_horizontal.jpg');"></div>
 
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Don’t assume your user data in the cloud is safe</h2>
-                    </div>
-                </a>-->
+                        <div class="text">
+                            <span class="date">Apr. 14th, 2022</span>
+                            <h2>Don’t assume your user data in the cloud is safe</h2>
+                        </div>
+                    </a>-->
+                </div>
+                <!--<div class="col-md-4">
+                    <a href="single.html" class="h-entry img-5 h-100 gradient">
+
+                        <div class="featured-img" style="background-image: url('images/img_1_vertical.jpg');"></div>
+
+                        <div class="text">
+                            <span class="date">Apr. 14th, 2022</span>
+                            <h2>Why is my internet so slow?</h2>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="single.html" class="h-entry mb-30 v-height gradient">
+
+                        <div class="featured-img" style="background-image: url('images/img_3_horizontal.jpg');"></div>
+
+                        <div class="text">
+                            <span class="date">Apr. 14th, 2022</span>
+                            <h2>Startup vs corporate: What job suits you best?</h2>
+                        </div>
+                    </a>
+                    <a href="single.html" class="h-entry v-height gradient">
+
+                        <div class="featured-img" style="background-image: url('images/img_4_horizontal.jpg');"></div>
+
+                        <div class="text">
+                            <span class="date">Apr. 14th, 2022</span>
+                            <h2>Thought you loved Python? Wait until you meet Rust</h2>
+                        </div>
+                    </a>
+                </div>-->
             </div>
-            <!--<div class="col-md-4">
-                <a href="single.html" class="h-entry img-5 h-100 gradient">
-
-                    <div class="featured-img" style="background-image: url('images/img_1_vertical.jpg');"></div>
-
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Why is my internet so slow?</h2>
-                    </div>
-                </a>
-            </div>
-            <div class="col-md-4">
-                <a href="single.html" class="h-entry mb-30 v-height gradient">
-
-                    <div class="featured-img" style="background-image: url('images/img_3_horizontal.jpg');"></div>
-
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Startup vs corporate: What job suits you best?</h2>
-                    </div>
-                </a>
-                <a href="single.html" class="h-entry v-height gradient">
-
-                    <div class="featured-img" style="background-image: url('images/img_4_horizontal.jpg');"></div>
-
-                    <div class="text">
-                        <span class="date">Apr. 14th, 2022</span>
-                        <h2>Thought you loved Python? Wait until you meet Rust</h2>
-                    </div>
-                </a>
-            </div>-->
         </div>
-    </div>
-</section>
+    </section>
 <!-- End retroy layout blog posts -->
 
 <!-- Start posts-entry -->
@@ -116,7 +119,7 @@
             <div class="col-sm-6">
                 <h2 class="posts-entry-title">Business</h2>
             </div>
-            <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+            <div class="col-sm-6 text-sm-end"><a href="category.php" class="read-more">View All</a></div>
         </div>
         <div class="row g-3">
             <div class="col-md-9">
@@ -234,7 +237,7 @@
             <div class="col-sm-6">
                 <h2 class="posts-entry-title">Culture</h2>
             </div>
-            <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+            <div class="col-sm-6 text-sm-end"><a href="category.php" class="read-more">View All</a></div>
         </div>
         <div class="row g-3">
             <div class="col-md-9 order-md-2">
@@ -298,7 +301,7 @@
             <div class="col-sm-6">
                 <h2 class="posts-entry-title">Politics</h2>
             </div>
-            <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+            <div class="col-sm-6 text-sm-end"><a href="category.php" class="read-more">View All</a></div>
         </div>
 
         <div class="row">
@@ -481,7 +484,7 @@
             <div class="col-sm-6">
                 <h2 class="posts-entry-title">Travel</h2>
             </div>
-            <div class="col-sm-6 text-sm-end"><a href="category.html" class="read-more">View All</a></div>
+            <div class="col-sm-6 text-sm-end"><a href="category.php" class="read-more">View All</a></div>
         </div>
 
         <div class="row align-items-stretch retro-layout-alt">
@@ -528,27 +531,25 @@
 
     </div>
 </div>
+    <?php $view->include('footer'); ?>
 
-<!-- Preloader -->
-<div id="overlayer"></div>
-<div class="loader">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <!-- Preloader -->
+    <div id="overlayer"></div>
+    <div class="loader">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
     </div>
-</div>
 
-<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="assets/js/tiny-slider.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/tiny-slider.js"></script>
 
-<script src="assets/js/flatpickr.min.js"></script>
+    <script src="assets/js/flatpickr.min.js"></script>
 
-<script src="assets/js/aos.js"></script>
-<script src="assets/js/glightbox.min.js"></script>
-<script src="assets/js/navbar.js"></script>
-<script src="assets/js/counter.js"></script>
-<script src="assets/js/custom.js"></script>
-
-<?php $view->include('footer'); ?>
-
+    <script src="assets/js/aos.js"></script>
+    <script src="assets/js/glightbox.min.js"></script>
+    <script src="assets/js/navbar.js"></script>
+    <script src="assets/js/counter.js"></script>
+    <script src="assets/js/custom.js"></script>
 </body>
 </html>
