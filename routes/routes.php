@@ -8,6 +8,7 @@ use Core\Routing\Route;
 
 return [
     Route::get('/', [HomeController::class, 'index']),
-    Route::get('/articles/{$id}', [ArticleController::class, 'index']),
+    Route::get('/articles', [ArticleController::class, 'index']),
+    Route::get('/articles/{$id}', [ArticleController::class, 'show']),
     Route::post('/article/add', [ArticleController::class, 'save'])
 ];

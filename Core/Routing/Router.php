@@ -38,6 +38,7 @@ class Router
         if ($route) {
             $controller = new $route['controllerName'];
             call_user_func([$controller, 'setView'], $this->view);
+            call_user_func([$controller, 'setRequest'], $this->request);
             call_user_func([$controller, $route['actionName']]);
         } else {
             echo '404 not found';

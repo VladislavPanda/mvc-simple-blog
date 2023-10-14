@@ -42,19 +42,21 @@ class Request
     }
 
     /**
-     * @return array
+     * @param string $param
+     * @return mixed
      */
-    public function get(): array
+    public function get(string $param = ''): mixed
     {
-        return $this->get;
+        return $param ? $this->get()[$param] : $this->get;
     }
 
     /**
-     * @return array
+     * @param string $param
+     * @return mixed
      */
-    public function post(): array
+    public function post(string $param = ''): mixed
     {
-        return $this->post;
+        return $param ? $this->post()[$param] : $this->post;
     }
 
     /**
