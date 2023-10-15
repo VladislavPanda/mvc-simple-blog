@@ -48,7 +48,7 @@
 
     <?php
         /** @var \Core\View\View $view */
-        $view->include('header')
+        echo $view->include('header')
     ?>
 
 <div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('assets/images/hero_5.jpg');">
@@ -380,7 +380,7 @@
 </section>
     <!-- End posts-entry -->
 
-    <?php $view->include('footer') ?>
+    <?php echo $view->include('footer') ?>
 
     <!-- Preloader -->
     <div id="overlayer"></div>
@@ -390,18 +390,13 @@
         </div>
     </div>
 
-
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/tiny-slider.js"></script>
-
     <script src="assets/js/flatpickr.min.js"></script>
-
-
     <script src="assets/js/aos.js"></script>
     <script src="assets/js/glightbox.min.js"></script>
     <script src="assets/js/navbar.js"></script>
     <script src="assets/js/counter.js"></script>
     <script src="assets/js/custom.js"></script>
-
 </body>
 </html>

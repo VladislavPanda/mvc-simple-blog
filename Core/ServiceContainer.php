@@ -6,6 +6,7 @@ namespace Core;
 
 use Core\Exceptions\ClassNotFoundException;
 use Core\Http\Request;
+use Core\Http\Response;
 use Core\Routing\RouteDispatcher;
 use Core\Routing\Router;
 use Core\View\View;
@@ -44,9 +45,11 @@ class ServiceContainer
     {
         $this->services[Request::class] = Request::createFromSuperGlobals();
         $this->services[View::class] = new View();
+        $this->services[Response::class] = new Response();
         $this->services[Router::class] = new Router(
             $this->getService(Request::class),
-            $this->getService(View::class)
+            $this->getService(View::class),
+            $this->getService(Response::class)
         );
     }
 }

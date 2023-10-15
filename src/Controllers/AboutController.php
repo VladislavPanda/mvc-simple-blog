@@ -8,6 +8,6 @@ class AboutController extends Controller
 {
     public function index()
     {
-        echo $this->view->make('about')->render();
+        return $this->view->make('about')->render();
     }
 }

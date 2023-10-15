@@ -41,10 +41,10 @@ class View
 
     /**
      * @param $name
-     * @return void
+     * @return string
      * @throws ViewNotFoundException
      */
-    public function include($name): void
+    public function include($name): string
     {
         $include = View::INCLUDES_PATH . $name . '.php';
 
@@ -52,9 +52,7 @@ class View
             throw new ViewNotFoundException('View ' . $name . ' does not exist');
         }
 
-        ob_start();
-        require_once $include;
-        echo ob_get_clean();
+        return file_get_contents($include);
     }
 
     /**

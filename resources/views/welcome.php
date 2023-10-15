@@ -40,7 +40,7 @@
 
     <?php
         /** @var \Core\View\View $view */
-        $view->include('header');
+        echo $view->include('header');
     ?>
 
     <section class="section bg-light">
@@ -525,13 +525,11 @@
                         </div>
                     </a>
                 </div>
-
             </div>
         </div>
-
     </div>
 </div>
-    <?php $view->include('footer'); ?>
+    <?php echo $view->include('footer'); ?>
 
     <!-- Preloader -->
     <div id="overlayer"></div>

@@ -47,7 +47,7 @@
 
     <?php
         /** @var \Core\View\View $view */
-        $view->include('header')
+        echo $view->include('header')
     ?>
 
 	<div class="site-cover site-cover-sm same-height overlay single-page" style="background-image: url('images/hero_5.jpg');">

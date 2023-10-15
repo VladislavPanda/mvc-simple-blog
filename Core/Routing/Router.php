@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Core\Routing;
 
 use Core\Http\Request;
+use Core\Http\Response;
 use Core\Routing\RouteDispatcher;
 use Core\View\View;
 
@@ -25,7 +26,8 @@ class Router
 
     public function __construct(
         private Request $request,
-        private View $view
+        private View $view,
+        private Response $response
     ) {
         $this->routes = $this->groupRoutes();
         $this->routeDispatcher = new RouteDispatcher($this->request, $this->routes);
@@ -39,7 +41,8 @@ class Router
             $controller = new $route['controllerName'];
             call_user_func([$controller, 'setView'], $this->view);
             call_user_func([$controller, 'setRequest'], $this->request);
-            call_user_func([$controller, $route['actionName']]);
+            $body = call_user_func([$controller, $route['actionName']]);
+            $this->response->send($body);
         } else {
             echo '404 not found';
         }
