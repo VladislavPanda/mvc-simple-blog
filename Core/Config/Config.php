@@ -8,7 +8,13 @@ use Core\Exceptions\FileNotFoundException;
 
 class Config
 {
-    public function get(string $filename, string $key = ''): string|array
+    /**
+     * @param string $filename
+     * @param string $key
+     * @return string|array
+     * @throws FileNotFoundException
+     */
+    public static function get(string $filename, string $key = ''): string|array
     {
         $file = __DIR__ . '/../../config/' . $filename . '.php';
 
@@ -18,8 +24,8 @@ class Config
 
         $config = require $file;
 
-        return $key
-            ? $config
-            : $config[$key];
+        return $key != ''
+            ? $config[$key]
+            : $config;
     }
 }
