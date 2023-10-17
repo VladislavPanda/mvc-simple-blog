@@ -28,16 +28,16 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     /**
      * CRUD operation which have to be executed
      *
-     * @var string|null
+     * @var string
      */
-    protected ?string $operation;
+    protected string $operation = 'select';
 
     /**
      * List of fields from the Select operation
      *
-     * @var array|null
+     * @var array|string
      */
-    protected ?array $selectedFields;
+    protected array|string $selectedFields;
 
     /**
      * List of conditions
@@ -66,9 +66,13 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected DBConnector $connection;
 
     public function __construct(
-        string|null $operation = null,
-        array|string|null $selectedFields = null,
+        $operation = null,
+        $selectedFields = null,
+        $conditions = []
     ) {
+        $this->operation = $operation;
+        $this->selectedFields = $selectedFields ?? '*';
+        $this->conditions = $conditions;
         $this->connection = DBConnector::getInstance();
     }
 
@@ -80,7 +84,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function select(array|string $fields = '*'): Model
     {
-        return new static();
+        return new static('select', $fields);
     }
 
     /**
@@ -89,7 +93,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      * @param array $record
      * @return int
      */
-    public function create(array $record): int
+    public static function create(array $record): int
     {
         return 0;
     }
@@ -135,7 +139,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function find(int $id): array
     {
-        return [];
+        return (new static('select', '*', ["id = '$id'"]))->get();
     }
 
     /**
@@ -148,6 +152,8 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public function where(string $field, string $operator, mixed $value): Model
     {
+        $this->conditions[] = "$field $operator '$value'";
+
         return $this;
     }
 
@@ -176,5 +182,69 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected function createQueryBuilder(): QueryBuilder
     {
         return new QueryBuilder($this);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTable(): string
+    {
+        return $this->table;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFields(): array
+    {
+        return $this->fields;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrimaryKey(): string
+    {
+        return $this->primaryKey;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOperation(): string
+    {
+        return $this->operation;
+    }
+
+    /**
+     * @return array|string
+     */
+    public function getSelectedFields(): array|string
+    {
+        return $this->selectedFields;
+    }
+
+    /**
+     * @return array
+     */
+    public function getConditions(): array
+    {
+        return $this->conditions;
+    }
+
+    /**
+     * @return int|string
+     */
+    public function getLimit(): int|string
+    {
+        return $this->limit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderBy(): string
+    {
+        return $this->orderBy;
     }
 }

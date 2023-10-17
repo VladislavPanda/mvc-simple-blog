@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Core\Database\QueryComponentsModifiers;
 
-use Core\Contracts\Database\QueryComponentsModifiersInterface;
-
-class FromModifier implements QueryComponentsModifiersInterface
+class FromModifier extends Modifier
 {
+    /**
+     * @return string
+     */
     public function process(): string
     {
-        return '';
+        return ' FROM ' . $this->model->getTable();
     }
 }

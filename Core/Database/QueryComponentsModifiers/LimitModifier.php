@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Core\Database\QueryComponentsModifiers;
 
-use Core\Contracts\Database\QueryComponentsModifiersInterface;
-
-class LimitModifier implements QueryComponentsModifiersInterface
+class LimitModifier extends Modifier
 {
     public function process(): string
     {
-        return '';
+        return $this->model->getLimit()
+            ? ' LIMIT ' . $this->model->getLimit()
+            : '';
     }
 }

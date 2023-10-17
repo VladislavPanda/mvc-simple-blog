@@ -4,6 +4,7 @@ namespace Core\Database;
 
 use Core\Contracts\Database\MakeCrudQueryInterface;
 use Core\Contracts\Database\QueryComponentsModifiersInterface;
+use Core\Database\QueryComponentsModifiers\Modifier;
 
 class QueryBuilder implements MakeCrudQueryInterface
 {
@@ -34,6 +35,12 @@ class QueryBuilder implements MakeCrudQueryInterface
     {
         $queryString = 'SELECT ';
 
+        foreach ($this->queryComponentsModifiers as $queryComponentsModifier) {
+            $queryString .= $queryComponentsModifier->process();
+        }
+
+        echo $queryString;
+
         return '';
     }
 
@@ -53,7 +60,7 @@ class QueryBuilder implements MakeCrudQueryInterface
     }
 
     /**
-     * @return QueryComponentsModifiersInterface[]
+     * @return Modifier[]
      */
     private function initModifiers(): array
     {

@@ -11,7 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        Category::all();
+        Category::find(1);
 
         return $this->view->make('welcome')->render();
     }

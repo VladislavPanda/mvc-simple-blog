@@ -1,13 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Core\Database\QueryComponentsModifiers;
 
-use Core\Contracts\Database\QueryComponentsModifiersInterface;
-
-class FieldsModifier implements QueryComponentsModifiersInterface
+class FieldsModifier extends Modifier
 {
+    /**
+     * @return string
+     */
     public function process(): string
     {
-        return '';
+        return is_array($this->model->getSelectedFields())
+            ? implode(', ', $this->model->getSelectedFields())
+            : ' * ';
     }
 }

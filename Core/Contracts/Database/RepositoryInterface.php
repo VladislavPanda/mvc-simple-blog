@@ -18,7 +18,7 @@ interface RepositoryInterface
      * @param array $record
      * @return int
      */
-    public function create(array $record): int;
+    public static function create(array $record): int;
 
     /**
      * @param int $id

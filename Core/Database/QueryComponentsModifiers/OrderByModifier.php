@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Database\QueryComponentsModifiers;
 
-use Core\Contracts\Database\QueryComponentsModifiersInterface;
-
-class OrderByModifier implements QueryComponentsModifiersInterface
+class OrderByModifier extends Modifier
 {
     public function process(): string
     {

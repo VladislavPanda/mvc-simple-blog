@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace Core\Database\QueryComponentsModifiers;
 
-use Core\Contracts\Database\QueryComponentsModifiersInterface;
-
-class ConditionsModifier implements QueryComponentsModifiersInterface
+class ConditionsModifier extends Modifier
 {
+    /**
+     * @return string
+     */
     public function process(): string
     {
-        return '';
+        return $this->model->getConditions()
+            ? ' WHERE ' . implode(' AND', $this->model->getConditions())
+            : '';
     }
 }
