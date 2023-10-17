@@ -11,8 +11,15 @@ class ConditionsModifier extends Modifier
      */
     public function process(): string
     {
-        return $this->model->getConditions()
-            ? ' WHERE ' . implode(' AND', $this->model->getConditions())
-            : '';
+        if (empty($this->model->getConditions())) {
+            return '';
+        }
+
+        $modifiedConditions = array_map(
+            fn (string $condition) => explode(' ', $condition)[0] . ' = :' . explode(' ', $condition)[0],
+            $this->model->getConditions()
+        );
+
+        return ' WHERE ' . implode(' AND', $modifiedConditions);
     }
 }

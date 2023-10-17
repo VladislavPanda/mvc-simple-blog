@@ -140,7 +140,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function find(int $id): array
     {
-        return (new static('select', '*', ["id = '$id'"]))->get();
+        return (new static('select', '*', ['id = :id']))->get();
     }
 
     /**
@@ -153,7 +153,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public function where(string $field, string $operator, mixed $value): Model
     {
-        $this->conditions[] = "$field $operator '$value'";
+        $this->conditions[] = "$field $operator $value";
 
         return $this;
     }
@@ -172,9 +172,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
         return $this;
     }
 
-    protected function get()
+    public function get()
     {
         $queryString = $this->createQueryBuilder()->makeSelect();
+
+        echo $queryString;
 
         return [1,23,45];
     }

@@ -8,6 +8,8 @@ class OrderByModifier extends Modifier
 {
     public function process(): string
     {
-        return '';
+        return $this->model->getOrderBy()
+            ? ' ORDER BY ' . $this->model->getOrderBy()
+            : '';
     }
 }
