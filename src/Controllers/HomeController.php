@@ -3,15 +3,13 @@
 namespace App\Controllers;
 
 use App\Models\Category;
-use Core\Config\Config;
 use Core\Controllers\Controller;
-use Core\Database\DBConnector;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        Category::find(1);
+        Category::select('title')->where('id', '=', 2);
 
         return $this->view->make('welcome')->render();
     }

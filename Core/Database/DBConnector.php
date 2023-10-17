@@ -14,9 +14,14 @@ class DBConnector
      */
     private static PDO|self $instance;
 
+    /**
+     * @var PDO
+     */
+    private PDO $connection;
+
     private function __construct(array $config)
     {
-        self::$instance = new PDO(
+        $this->connection = new PDO(
             $config['driver'] . ':host=' .
             $config['host'] . ';dbname=' . $config['name'] . ';charset=' . $config['charset'],
             $config['user'],
@@ -32,5 +37,13 @@ class DBConnector
     public static function getInstance(): self
     {
         return self::$instance ??= new self(Config::get('database'));
+    }
+
+    /**
+     * @return PDO
+     */
+    public function getConnection(): PDO
+    {
+        return $this->connection;
     }
 }

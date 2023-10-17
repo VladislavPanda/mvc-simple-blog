@@ -35,6 +35,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     /**
      * List of fields from the Select operation
      *
+     *
      * @var array|string
      */
     protected array|string $selectedFields;
@@ -61,9 +62,9 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected string $orderBy = '';
 
     /**
-     * @var DBConnector
+     * @var PDO
      */
-    protected DBConnector $connection;
+    protected PDO $connection;
 
     public function __construct(
         $operation = null,
@@ -73,7 +74,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
         $this->operation = $operation;
         $this->selectedFields = $selectedFields ?? '*';
         $this->conditions = $conditions;
-        $this->connection = DBConnector::getInstance();
+        $this->connection = DBConnector::getInstance()->getConnection();
     }
 
     /**
@@ -159,17 +160,21 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
 
     public function orderBy(string $field, string $direction = 'ASC'): Model
     {
+        $this->orderBy = "$field $direction";
+
         return $this;
     }
 
     public function limit(int $number): Model
     {
+        $this->limit = $number > 0 ? $number : '';
+
         return $this;
     }
 
     protected function get()
     {
-        $this->createQueryBuilder()->makeSelect();
+        $queryString = $this->createQueryBuilder()->makeSelect();
 
         return [1,23,45];
     }
