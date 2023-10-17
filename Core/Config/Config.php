@@ -6,7 +6,7 @@ namespace Core\Config;
 
 use Core\Exceptions\FileNotFoundException;
 
-class Config
+final class Config
 {
     /**
      * @param string $filename
