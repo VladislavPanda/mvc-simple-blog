@@ -68,11 +68,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
 
     public function __construct(
         $operation = null,
-        $selectedFields = null,
+        $selectedFields = '*',
         $conditions = []
     ) {
         $this->operation = $operation;
-        $this->selectedFields = $selectedFields ?? '*';
+        $this->selectedFields = $selectedFields;
         $this->conditions = $conditions;
         $this->connection = DBConnector::getInstance()->getConnection();
     }
@@ -140,7 +140,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function find(int $id): array
     {
-        return (new static('select', '*', ['id = :id']))->get();
+        return (new static('select', '*', ["id = $id"]))->get();
     }
 
     /**
@@ -174,11 +174,17 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
 
     public function get()
     {
+        $params = [];
         $queryString = $this->createQueryBuilder()->makeSelect();
+        $sth = $this->connection->prepare($queryString);
 
-        echo $queryString;
+        if (! empty($this->conditions)) {
+            $params = $this->createStatementParamsCreator($queryString)->process();
+        }
 
-        return [1,23,45];
+        $sth->execute($params);
+
+        return $sth->fetchAll();
     }
 
     /**
@@ -189,6 +195,14 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected function createQueryBuilder(): QueryBuilder
     {
         return new QueryBuilder($this);
+    }
+
+    /**
+     * @return StatementParamsCreator
+     */
+    protected function createStatementParamsCreator(string $queryString): StatementParamsCreator
+    {
+        return new StatementParamsCreator($this->conditions, $queryString);
     }
 
     /**

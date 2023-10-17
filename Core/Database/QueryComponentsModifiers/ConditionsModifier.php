@@ -20,6 +20,6 @@ class ConditionsModifier extends Modifier
             $this->model->getConditions()
         );
 
-        return ' WHERE ' . implode(' AND', $modifiedConditions);
+        return ' WHERE ' . implode(' AND ', $modifiedConditions);
     }
 }

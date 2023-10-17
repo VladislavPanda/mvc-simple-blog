@@ -13,6 +13,6 @@ class FieldsModifier extends Modifier
     {
         return is_array($this->model->getSelectedFields())
             ? implode(', ', $this->model->getSelectedFields())
-            : ' * ';
+            : ' *';
     }
 }

@@ -9,7 +9,10 @@ class HomeController extends Controller
 {
     public function index()
     {
-        Category::select('title')->where('id', '=', 2)->get();
+        echo '<pre>';
+        var_dump(Category::find(2));
+        echo '</pre>';
+        // Category::select('title')->where('id', '=', 2)->where('title', '=', 'Категория2')->get()
 
         return $this->view->make('welcome')->render();
     }
