@@ -37,10 +37,9 @@
     </div>
     <div class="site-mobile-menu-body"></div>
 </div>
-
     <?php
         /** @var \Core\View\View $view */
-        echo $view->include('header');
+        echo $view->include('header', ['categories']);
     ?>
 
     <section class="section bg-light">

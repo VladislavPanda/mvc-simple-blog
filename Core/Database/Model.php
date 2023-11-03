@@ -158,6 +158,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
         return $this;
     }
 
+    /**
+     * @param string $field
+     * @param string $direction
+     * @return $this
+     */
     public function orderBy(string $field, string $direction = 'ASC'): Model
     {
         $this->orderBy = "$field $direction";

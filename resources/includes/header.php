@@ -20,7 +20,7 @@
                                     <a href="#">Категории</a>
                                     <ul class="dropdown">
                                         <?php
-                                        print_r($categories);
+                                            /** @var array $categories */
                                             foreach ($categories as $category):
                                         ?>
                                             <li><a href="#"><?php echo $category['title'] ?></a></li>

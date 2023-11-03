@@ -41,10 +41,11 @@ class View
 
     /**
      * @param $name
+     * @param $parameters
      * @return string
      * @throws ViewNotFoundException
      */
-    public function include($name): string
+    public function include($name, $parameters): string
     {
         $include = View::INCLUDES_PATH . $name . '.php';
 
@@ -52,7 +53,12 @@ class View
             throw new ViewNotFoundException('View ' . $name . ' does not exist');
         }
 
-        return file_get_contents($include);
+        $parsedParameters = $this->getParsedParameters($parameters);
+
+        ob_start();
+        extract($parsedParameters);
+        require_once $include;
+        return ob_get_clean();
     }
 
     /**
@@ -61,8 +67,19 @@ class View
     public function render(): string|bool
     {
         ob_start();
-        extract(['view' => $this, $this->parameters]); //$this->parameters);
+        extract(['view' => $this, $this->parameters]);
         require $this->template;
         return ob_get_clean();
+    }
+
+    /**
+     * @param array $parameters
+     * @return array
+     */
+    public function getParsedParameters(array $parameters): array
+    {
+        return array_combine($parameters,
+            array_map(fn (string $parameter) => $this->parameters[$parameter], $parameters)
+        );
     }
 }
