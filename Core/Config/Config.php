@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\Config;
 
-use Core\Exceptions\FileNotFoundException;
+use Core\Exceptions\Filesystem\FileNotFoundException;
 
 final class Config
 {

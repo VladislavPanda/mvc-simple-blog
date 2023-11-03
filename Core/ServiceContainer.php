@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace Core;
 
-use Core\Exceptions\ClassNotFoundException;
+use Core\Exceptions\Filesystem\ClassNotFoundException;
 use Core\Http\Request;
 use Core\Http\Response;
-use Core\Routing\RouteDispatcher;
 use Core\Routing\Router;
 use Core\View\View;
 
@@ -26,7 +25,7 @@ class ServiceContainer
     /**
      * @param string $name
      * @return object
-     * @throws ClassNotFoundException
+     * @throws \Core\Exceptions\Filesystem\ClassNotFoundException
      */
     public function getService(string $name): object
     {
@@ -39,7 +38,7 @@ class ServiceContainer
 
     /**
      * @return void
-     * @throws ClassNotFoundException
+     * @throws \Core\Exceptions\Filesystem\ClassNotFoundException
      */
     private function initServices(): void
     {

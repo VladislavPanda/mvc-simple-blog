@@ -32,7 +32,7 @@ class DBConnector
 
     /**
      * @return self
-     * @throws \Core\Exceptions\FileNotFoundException
+     * @throws \Core\Exceptions\Filesystem\FileNotFoundException
      */
     public static function getInstance(): self
     {

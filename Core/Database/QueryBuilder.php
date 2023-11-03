@@ -39,8 +39,6 @@ class QueryBuilder implements MakeCrudQueryInterface
             $queryString .= $queryComponentsModifier->process();
         }
 
-        echo $queryString;
-
         return $queryString;
     }
 

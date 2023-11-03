@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Core\View;
 
-use Core\Exceptions\ViewNotFoundException;
+use Core\Exceptions\Filesystem\ViewNotFoundException;
 
 class View
 {
@@ -43,7 +43,7 @@ class View
      * @param $name
      * @param $parameters
      * @return string
-     * @throws ViewNotFoundException
+     * @throws \Core\Exceptions\Filesystem\ViewNotFoundException
      */
     public function include($name, $parameters): string
     {
@@ -58,6 +58,7 @@ class View
         ob_start();
         extract($parsedParameters);
         require_once $include;
+
         return ob_get_clean();
     }
 
@@ -67,8 +68,12 @@ class View
     public function render(): string|bool
     {
         ob_start();
-        extract(['view' => $this, $this->parameters]);
+        extract(['view' => $this]);
+        foreach ($this->parameters as $paramName => $value) {
+            extract([$paramName => $value]);
+        }
         require $this->template;
+
         return ob_get_clean();
     }
 

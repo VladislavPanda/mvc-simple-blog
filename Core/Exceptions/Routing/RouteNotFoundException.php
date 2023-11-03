@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Routing\Exceptions;
+namespace Core\Exceptions\Routing;
 
 class RouteNotFoundException extends \Exception
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Exceptions;
+namespace Core\Exceptions\Filesystem;
 
 class FileNotFoundException extends \Exception
 {

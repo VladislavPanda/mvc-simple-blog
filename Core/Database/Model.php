@@ -85,7 +85,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function select(array|string $fields = '*'): Model
     {
-        return new static('select', [$fields]);
+        return new static('select', !is_array($fields) ? [$fields] : $fields);
     }
 
     /**

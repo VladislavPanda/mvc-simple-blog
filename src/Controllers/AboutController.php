@@ -11,6 +11,6 @@ class AboutController extends Controller
     {
         $categories = Category::all();
 
-        return $this->view->make('welcome', ['categories' => $categories])->render();
+        return $this->view->make('about', ['categories' => $categories])->render();
     }
 }

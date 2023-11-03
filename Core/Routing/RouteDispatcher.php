@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Core\Routing;
 
+use Core\Exceptions\Routing\RouteNotFoundException;
 use Core\Http\Request;
-use Core\Routing\Exceptions\RouteNotFoundException;
 
 class RouteDispatcher
 {
@@ -38,7 +38,7 @@ class RouteDispatcher
     }
 
     /**
-     * @throws RouteNotFoundException
+     * @throws \Core\Exceptions\Routing\RouteNotFoundException
      */
     public function process()
     {

@@ -45,23 +45,29 @@
     <section class="section bg-light">
         <div class="container">
             <div class="row align-items-stretch retro-layout">
+                <?php
+                    /** @var array $articles */
+                    foreach ($articles as $article) {
+                ?>
                 <div class="col-md-4">
-                    <a href="/articles/show/{{ $article['id'] }}" class="h-entry mb-30 v-height gradient">
+                    <a href="/articles/show/<?php echo $article['id']; ?>" class="h-entry mb-30 v-height gradient">
 
-                        <div class="featured-img" style="background-image: url('');"></div>
+                        <div class="featured-img"
+                             style="background-image: url('<?php echo $article['image_path'] ?>');">
+                        </div>
 
                         <div class="text">
                                 <span class="date">
-                                    14.09.2023
+                                    <?php echo $article['created_at']; ?>
                                 </span>
                             <h2>
-                                Название
+                                <?php echo $article['title']; ?>
                             </h2>
                             <h6 style="color: white">
-                                Категория: тест
+                                Категория: <?php echo $article['category']; ?>
                             </h6>
                             <h6 style="color: white">
-                                Автор: тест
+                                Автор: <?php echo $article['author']; ?>
                             </h6>
                         </div>
                     </a>
@@ -75,6 +81,9 @@
                         </div>
                     </a>-->
                 </div>
+                <?php
+                    }
+                ?>
                 <!--<div class="col-md-4">
                     <a href="single.html" class="h-entry img-5 h-100 gradient">
 

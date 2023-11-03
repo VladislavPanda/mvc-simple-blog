@@ -2,7 +2,9 @@
 
 namespace App\Models;
 
-class User
+use Core\Database\Model;
+
+class User extends Model
 {
     /**
      * @var string
@@ -23,5 +25,4 @@ class User
         'created_at',
         'updated_at'
     ];
-
 }
