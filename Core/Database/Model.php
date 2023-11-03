@@ -85,7 +85,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function select(array|string $fields = '*'): Model
     {
-        return new static('select', $fields);
+        return new static('select', [$fields]);
     }
 
     /**
@@ -198,6 +198,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     }
 
     /**
+     * @param string $queryString
      * @return StatementParamsCreator
      */
     protected function createStatementParamsCreator(string $queryString): StatementParamsCreator

@@ -9,11 +9,12 @@ class HomeController extends Controller
 {
     public function index()
     {
-        echo '<pre>';
-        var_dump(Category::find(2));
-        echo '</pre>';
-        // Category::select('title')->where('id', '=', 2)->where('title', '=', 'Категория2')->get()
+        //$categories = Category::all();
+        $categories = Category::select('title')->where('id', '=', 2)->where('title', '=', 'Категория2')->get();
 
-        return $this->view->make('welcome')->render();
+        echo '<pre>';
+        var_dump($categories);
+        echo '</pre>';
+        return $this->view->make('welcome', ['categories' => $categories])->render();
     }
 }

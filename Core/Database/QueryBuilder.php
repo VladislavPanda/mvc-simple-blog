@@ -33,11 +33,13 @@ class QueryBuilder implements MakeCrudQueryInterface
 
     public function makeSelect(): string
     {
-        $queryString = 'SELECT';
+        $queryString = 'SELECT ';
 
         foreach ($this->queryComponentsModifiers as $queryComponentsModifier) {
             $queryString .= $queryComponentsModifier->process();
         }
+
+        echo $queryString;
 
         return $queryString;
     }

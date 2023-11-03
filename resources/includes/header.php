@@ -19,8 +19,14 @@
                                 <li class="has-children">
                                     <a href="#">Категории</a>
                                     <ul class="dropdown">
-                                        <li><a href="#">test</a>
-                                        </li>
+                                        <?php
+                                        print_r($categories);
+                                            foreach ($categories as $category):
+                                        ?>
+                                            <li><a href="#"><?php echo $category['title'] ?></a></li>
+                                        <?php
+                                            endforeach;
+                                        ?>
                                     </ul>
                                 </li>
                                 <li><a href="">Авторизация</a></li>

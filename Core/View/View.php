@@ -61,7 +61,7 @@ class View
     public function render(): string|bool
     {
         ob_start();
-        extract(['view' => $this]); //$this->parameters);
+        extract(['view' => $this, $this->parameters]); //$this->parameters);
         require $this->template;
         return ob_get_clean();
     }
