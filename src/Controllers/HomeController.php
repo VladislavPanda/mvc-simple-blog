@@ -22,6 +22,12 @@ class HomeController extends Controller
             $articles[$key]['author'] = $user[0]['first_name'] . ' ' . $user[0]['second_name'];
         }
 
+        foreach ($categories as $key => $category) {
+            $categoriesArticles = Article::select(['id', 'title', 'content', 'image_path', 'created_at'])
+                ->where('category_id', '=', $category['id'])->get();
+            $categories[$key]['articles'] = $categoriesArticles;
+        }
+
         //$categories = Category::select('title')->where('id', '=', 2)->where('title', '=', 'Категория2')->get();
 
         return $this->view->make('welcome', [

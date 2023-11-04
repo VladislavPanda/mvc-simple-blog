@@ -40,12 +40,12 @@ class View
     }
 
     /**
-     * @param $name
-     * @param $parameters
+     * @param string $name
+     * @param array $parameters
      * @return string
-     * @throws \Core\Exceptions\Filesystem\ViewNotFoundException
+     * @throws ViewNotFoundException
      */
-    public function include($name, $parameters): string
+    public function include(string $name, array $parameters = []): string
     {
         $include = View::INCLUDES_PATH . $name . '.php';
 

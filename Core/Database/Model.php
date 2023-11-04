@@ -7,6 +7,7 @@ namespace Core\Database;
 use Core\Contracts\Database\RepositoryInterface;
 use Core\Contracts\Database\QueryComponentsInterface;
 use PDO;
+use Carbon\Carbon;
 
 abstract class Model implements RepositoryInterface, QueryComponentsInterface
 {
@@ -65,6 +66,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      * @var PDO
      */
     protected PDO $connection;
+
+    /**
+     * @var string
+     */
+    protected string $timestamps = 'd.m.Y';
 
     public function __construct(
         $operation = null,
@@ -177,7 +183,10 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
         return $this;
     }
 
-    public function get()
+    /**
+     * @return array|false
+     */
+    public function get(): array|false
     {
         $params = [];
         $queryString = $this->createQueryBuilder()->makeSelect();
@@ -189,7 +198,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
 
         $sth->execute($params);
 
-        return $sth->fetchAll();
+        return $this->getTimestampsAttributes($sth->fetchAll());
     }
 
     /**
@@ -209,6 +218,24 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected function createStatementParamsCreator(string $queryString): StatementParamsCreator
     {
         return new StatementParamsCreator($this->conditions, $queryString);
+    }
+
+    /**
+     * Accessor for timestamps
+     *
+     * @param array $queryResult
+     * @return array
+     */
+    protected function getTimestampsAttributes(array $queryResult): array
+    {
+        foreach ($queryResult as $key => $value) {
+            $queryResult[$key]['created_at'] = Carbon::parse($value['created_at'])
+                ->format($this->timestamps);
+            $queryResult[$key]['updated_at'] = Carbon::parse($value['updated_at'])
+                ->format($this->timestamps);
+        }
+
+        return $queryResult;
     }
 
     /**
