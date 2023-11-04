@@ -91,7 +91,7 @@
                 <div class="col-sm-6">
                     <h2 class="posts-entry-title"><?php echo $category['title'] ?></h2>
                 </div>
-                <div class="col-sm-6 text-sm-end"><a href="category.php" class="read-more">Читать все</a></div>
+                <!--<div class="col-sm-6 text-sm-end"><a href="category.php" class="read-more">Читать все</a></div>-->
             </div>
             <div class="row g-3">
                 <?php

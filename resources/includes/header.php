@@ -17,13 +17,17 @@
                                 <li class="active"><a href="/">Главная</a></li>
                                 <li class="active"><a href="/about">О блоге</a></li>
                                 <li class="has-children">
-                                    <a href="#">Категории</a>
+                                    <a href="">Категории</a>
                                     <ul class="dropdown">
                                         <?php
                                             /** @var array $categories */
                                             foreach ($categories as $category):
                                         ?>
-                                            <li><a href="#"><?php echo $category['title'] ?></a></li>
+                                            <li>
+                                                <a href="/categories/show/<?php echo $category['id'] ?>">
+                                                    <?php echo $category['title'] ?>
+                                                </a>
+                                            </li>
                                         <?php
                                             endforeach;
                                         ?>

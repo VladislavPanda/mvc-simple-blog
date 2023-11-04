@@ -34,6 +34,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected string $operation = 'select';
 
     /**
+     * @var string
+     */
+    protected string $selectMethod;
+
+    /**
      * List of fields from the Select operation
      *
      *
@@ -74,10 +79,12 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
 
     public function __construct(
         $operation = null,
+        $selectMethod = 'select',
         $selectedFields = '*',
         $conditions = []
     ) {
         $this->operation = $operation;
+        $this->selectMethod = $selectMethod;
         $this->selectedFields = $selectedFields;
         $this->conditions = $conditions;
         $this->connection = DBConnector::getInstance()->getConnection();
@@ -91,7 +98,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function select(array|string $fields = '*'): Model
     {
-        return new static('select', !is_array($fields) ? [$fields] : $fields);
+        return new static('select', 'select', !is_array($fields) ? [$fields] : $fields);
     }
 
     /**
@@ -135,7 +142,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function all(): array
     {
-        return (new static('select', '*'))->get();
+        return (new static('select', 'all', '*'))->get();
     }
 
     /**
@@ -146,7 +153,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     public static function find(int $id): array
     {
-        return (new static('select', '*', ["id = $id"]))->get();
+        return (new static('select', 'find', '*', ["id = $id"]))->get();
     }
 
     /**
@@ -198,7 +205,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
 
         $sth->execute($params);
 
-        return $this->getTimestampsAttributes($sth->fetchAll());
+        $queryResult = $this->getTimestampsAttributes($sth->fetchAll());
+
+        return $this->selectMethod == 'find'
+            ? $queryResult[0]
+            : $queryResult;
     }
 
     /**
@@ -229,10 +240,15 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     protected function getTimestampsAttributes(array $queryResult): array
     {
         foreach ($queryResult as $key => $value) {
-            $queryResult[$key]['created_at'] = Carbon::parse($value['created_at'])
-                ->format($this->timestamps);
-            $queryResult[$key]['updated_at'] = Carbon::parse($value['updated_at'])
-                ->format($this->timestamps);
+            if ($value['created_at']) {
+                $queryResult[$key]['created_at'] = Carbon::parse($value['created_at'])
+                    ->format($this->timestamps);
+            }
+
+            if ($value['updated_at']) {
+                $queryResult[$key]['updated_at'] = Carbon::parse($value['updated_at'])
+                    ->format($this->timestamps);
+            }
         }
 
         return $queryResult;

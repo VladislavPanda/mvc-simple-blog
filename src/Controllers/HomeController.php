@@ -16,10 +16,10 @@ class HomeController extends Controller
 
         foreach ($articles as $key => $article) {
             $category = Category::select('title')->where('id', '=', $article['category_id'])->get();
-            $articles[$key]['category'] = $category[0]['title'];
+            $articles[$key]['category'] = $category['title'];
 
             $user = User::select(['first_name', 'second_name'])->where('id', '=', $article['user_id'])->get();
-            $articles[$key]['author'] = $user[0]['first_name'] . ' ' . $user[0]['second_name'];
+            $articles[$key]['author'] = $user['first_name'] . ' ' . $user['second_name'];
         }
 
         foreach ($categories as $key => $category) {
@@ -27,8 +27,6 @@ class HomeController extends Controller
                 ->where('category_id', '=', $category['id'])->get();
             $categories[$key]['articles'] = $categoriesArticles;
         }
-
-        //$categories = Category::select('title')->where('id', '=', 2)->where('title', '=', 'Категория2')->get();
 
         return $this->view->make('welcome', [
             'categories' => $categories,
