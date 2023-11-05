@@ -87,13 +87,9 @@
 
                 <div class="pt-5">
                     <p>Категория:
-                        <?php
-                            foreach ($article['categories'] as $category) {
-                        ?>
-                                <a href="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></a>
-                        <?php
-                            }
-                        ?>
+                        <a href="<?php echo $article['category']['id']; ?>">
+                            <?php echo $article['category']['title']; ?>
+                        </a>
                     </p>
                 </div>
 

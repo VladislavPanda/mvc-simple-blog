@@ -5,13 +5,15 @@ namespace App\Controllers;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\User;
+use App\Services\ArticleService;
+use App\Services\CategoryService;
 use Core\Controllers\Controller;
 
 class ArticleController extends Controller
 {
-    public function index()
-    {
+    public function __construct(
 
+    ) {
     }
 
     public function show()
@@ -23,7 +25,7 @@ class ArticleController extends Controller
             ->where('id', '=', $article['user_id'])
             ->get()[0];
 
-        $article['categories'] = Category::select(['id', 'title'])
+        $article['category'] = Category::select(['id', 'title'])
             ->where('id', '=', $article['category_id'])
             ->get();
 

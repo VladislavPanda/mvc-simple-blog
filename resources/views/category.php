@@ -64,30 +64,36 @@
 			<div class="row posts-entry">
 				<div class="col-lg-8">
                     <?php
-                        foreach ($currentCategory['articles'] as $article) {
+                        if (! empty($currentCategory['articles'])) {
+                            foreach ($currentCategory['articles'] as $article) {
                     ?>
-					<div class="blog-entry d-flex blog-entry-search-item">
-						<a href="/articles/show/<?php echo $article['id'] ?>" class="img-link me-4">
-							<img src="<?php echo $article['image_path'] ?>" alt="Image" class="img-fluid">
-						</a>
-						<div>
-							<span class="date"><?php echo $article['created_at']; ?>
-                                <a href="#"><?php echo $currentCategory['title']; ?></a>
-                            </span>
-							<h2>
-                                <a href="/articles/show/<?php echo $article['id'] ?>">
-                                    <?php echo $article['title']; ?>
-                                </a>
-                            </h2>
-							<p><?php echo substr($article['content'], 0, 150) . '...' ?></p>
-							<p>
-                                <a href="/articles/show/<?php echo $article['id'] ?>"
-                                   class="btn btn-sm btn-outline-primary">
-                                   Читать всё
-                                </a>
-                            </p>
-						</div>
-					</div>
+                                <div class="blog-entry d-flex blog-entry-search-item">
+                                    <a href="/articles/show/<?php echo $article['id'] ?>" class="img-link me-4">
+                                        <img src="<?php echo $article['image_path'] ?>" alt="Image" class="img-fluid">
+                                    </a>
+                                    <div>
+                                        <span class="date"><?php echo $article['created_at']; ?>
+                                            <a href="#"><?php echo $currentCategory['title']; ?></a>
+                                        </span>
+                                        <h2>
+                                            <a href="/articles/show/<?php echo $article['id'] ?>">
+                                                <?php echo $article['title']; ?>
+                                            </a>
+                                        </h2>
+                                        <p><?php echo substr($article['content'], 0, 150) . '...' ?></p>
+                                        <p>
+                                            <a href="/articles/show/<?php echo $article['id'] ?>"
+                                               class="btn btn-sm btn-outline-primary">
+                                               Читать всё
+                                            </a>
+                                        </p>
+                                    </div>
+                                </div>
+                    <?php
+                            }
+                        } else {
+                    ?>
+                            <h4>Нет статей</h4>
                     <?php
                         }
                     ?>

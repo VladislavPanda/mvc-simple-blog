@@ -20,6 +20,16 @@ abstract class Controller
     protected Request $request;
 
     /**
+     * @param string $name
+     * @param object $service
+     * @return void
+     */
+    public function setService(string $name, object $service): void
+    {
+        $this->$name = $service;
+    }
+
+    /**
      * @param View $view
      * @return void
      */

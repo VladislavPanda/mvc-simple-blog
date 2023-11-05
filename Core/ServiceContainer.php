@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Core;
 
+use App\Providers\AppServiceProvider;
 use Core\Exceptions\Filesystem\ClassNotFoundException;
 use Core\Http\Request;
 use Core\Http\Response;
+use Core\Providers\Provider;
 use Core\Routing\Router;
 use Core\View\View;
 
@@ -45,9 +47,14 @@ class ServiceContainer
         $this->services[Request::class] = Request::createFromSuperGlobals();
         $this->services[View::class] = new View();
         $this->services[Response::class] = new Response();
-        $this->services[Router::class] = new Router(
+        $this->services[AppServiceProvider::class] = new AppServiceProvider();
+        $this->services[Provider::class] = new Provider(
             $this->getService(Request::class),
             $this->getService(View::class),
+            $this->getService(AppServiceProvider::class)
+        );
+        $this->services[Router::class] = new Router(
+            $this->getService(Provider::class),
             $this->getService(Response::class)
         );
     }

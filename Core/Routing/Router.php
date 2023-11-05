@@ -6,6 +6,7 @@ namespace Core\Routing;
 
 use Core\Http\Request;
 use Core\Http\Response;
+use Core\Providers\Provider;
 use Core\Routing\RouteDispatcher;
 use Core\View\View;
 
@@ -25,12 +26,11 @@ class Router
     private RouteDispatcher $routeDispatcher;
 
     public function __construct(
-        private Request $request,
-        private View $view,
+        private Provider $serviceProvider,
         private Response $response
     ) {
         $this->routes = $this->groupRoutes();
-        $this->routeDispatcher = new RouteDispatcher($this->request, $this->routes);
+        $this->routeDispatcher = new RouteDispatcher($this->serviceProvider->getRequest(), $this->routes);
     }
 
     public function run()
@@ -39,8 +39,7 @@ class Router
 
         if ($route) {
             $controller = new $route['controllerName'];
-            call_user_func([$controller, 'setView'], $this->view);
-            call_user_func([$controller, 'setRequest'], $this->request);
+            $this->serviceProvider->register($controller);
             $body = call_user_func([$controller, $route['actionName']]);
             $this->response->send($body);
         } else {

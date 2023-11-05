@@ -7,10 +7,17 @@ use App\Models\Category;
 use App\Models\User;
 use Core\Controllers\Controller;
 
+/**
+ * @property $categoryService
+ */
 class HomeController extends Controller
 {
     public function index()
     {
+        echo '<pre>';
+        var_dump($this->categoryService->getAll());
+        echo '</pre>';
+
         $categories = Category::all();
         $articles = Article::select('*')->limit(3)->get();
 
