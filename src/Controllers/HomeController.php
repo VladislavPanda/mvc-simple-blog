@@ -3,37 +3,25 @@
 namespace App\Controllers;
 
 use App\Models\Article;
-use App\Models\Category;
-use App\Models\User;
+use App\Services\ArticleService;
 use Core\Controllers\Controller;
 
 /**
  * @property $categoryService
+ * @property $articleService
+ * @property $userService
  */
 class HomeController extends Controller
 {
     public function index()
     {
-        echo '<pre>';
-        var_dump($this->categoryService->getAll());
-        echo '</pre>';
+        $categories = $this->categoryService->getAll();
+        $articles = $this->articleService->getMainPageItems();
 
-        $categories = Category::all();
-        $articles = Article::select('*')->limit(3)->get();
+        $articles = $this->categoryService->getItemTitleForArticles($articles);
+        $articles = $this->userService->getArticleAuthor($articles);
 
-        foreach ($articles as $key => $article) {
-            $category = Category::select('title')->where('id', '=', $article['category_id'])->get();
-            $articles[$key]['category'] = $category['title'];
-
-            $user = User::select(['first_name', 'second_name'])->where('id', '=', $article['user_id'])->get();
-            $articles[$key]['author'] = $user['first_name'] . ' ' . $user['second_name'];
-        }
-
-        foreach ($categories as $key => $category) {
-            $categoriesArticles = Article::select(['id', 'title', 'content', 'image_path', 'created_at'])
-                ->where('category_id', '=', $category['id'])->get();
-            $categories[$key]['articles'] = $categoriesArticles;
-        }
+        $categories = $this->articleService->getItemsForCategories($categories);
 
         return $this->view->make('welcome', [
             'categories' => $categories,

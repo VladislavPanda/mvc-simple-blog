@@ -33,7 +33,12 @@
     <link rel="stylesheet" href="/assets/css/flatpickr.min.css">
 
 
-    <title><?php echo $article['title'] ?></title>
+    <title>
+        <?php
+            /** @var array $article */
+            echo $article['title']
+        ?>
+    </title>
 </head>
 <body>
 
@@ -87,7 +92,7 @@
 
                 <div class="pt-5">
                     <p>Категория:
-                        <a href="<?php echo $article['category']['id']; ?>">
+                        <a href="/categories/show/<?php echo $article['category']['id']; ?>">
                             <?php echo $article['category']['title']; ?>
                         </a>
                     </p>

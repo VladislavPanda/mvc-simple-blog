@@ -10,7 +10,7 @@
                         <div class="col-8 text-center">
                             <form action="#" class="search-form d-inline-block d-lg-none">
                                 <input type="text" class="form-control" placeholder="Поиск...">
-                                <span class="bi-search"></span>
+                                <span class="bi-search">ййй</span>
                             </form>
 
                             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
@@ -42,7 +42,7 @@
                                 <span></span>
                             </a>
                             <form action="#" class="search-form d-none d-lg-inline-block">
-                                <input type="text" class="form-control" placeholder="Search...">
+                                <input type="text" class="form-control" placeholder="Найти статью...">
                                 <span class="bi-search"></span>
                             </form>
                         </div>

@@ -8,6 +8,10 @@ use App\Models\Article;
 use App\Models\Category;
 use Core\Controllers\Controller;
 
+/**
+ * @property $categoryService
+ * @property $articleService
+ */
 class CategoryController extends Controller
 {
     public function index()
@@ -17,8 +21,8 @@ class CategoryController extends Controller
 
     public function show()
     {
-        $categories = Category::all();
-        $currentCategory = '';
+        $categories = $this->categoryService->getAll();
+        $currentCategory = [];
 
         foreach ($categories as $category) {
             if ($category['id'] == $this->request->get('id')) {
@@ -26,11 +30,12 @@ class CategoryController extends Controller
             }
         }
 
-        $currentCategory['articles'] = Article::select('*')->where('category_id', '=', $currentCategory['id'])->get();
+        $currentCategory['articles'] = $this->articleService->getItemsForSingleCategory($currentCategory['id']);
 
         return $this->view->make('category', [
             'categories' => $categories,
             'currentCategory' => $currentCategory,
+            'popularArticles' => $this->articleService->getPopularItems()
         ])->render();
     }
 }

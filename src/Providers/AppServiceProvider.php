@@ -6,6 +6,7 @@ namespace App\Providers;
 
 use App\Services\ArticleService;
 use App\Services\CategoryService;
+use App\Services\UserService;
 use Core\Contracts\Providers\RegisterInterface;
 
 class AppServiceProvider implements RegisterInterface
@@ -23,7 +24,8 @@ class AppServiceProvider implements RegisterInterface
         // Register your services which have to be injected in controllers here
         $this->services = [
             CategoryService::class => new CategoryService(),
-            ArticleService::class => new ArticleService()
+            ArticleService::class => new ArticleService(),
+            UserService::class => new UserService()
         ];
 
         return $this;

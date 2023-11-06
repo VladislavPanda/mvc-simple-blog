@@ -1,16 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Models\Category;
 use Core\Controllers\Controller;
 
+/**
+ * @property $categoryService
+ */
 class AboutController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
-
-        return $this->view->make('about', ['categories' => $categories])->render();
+        return $this->view->make('about', [
+            'categories' => $this->categoryService->getAll()
+        ])->render();
     }
 }

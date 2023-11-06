@@ -9,34 +9,24 @@ use App\Services\ArticleService;
 use App\Services\CategoryService;
 use Core\Controllers\Controller;
 
+/**
+ * @property $categoryService
+ * @property $articleService
+ * @property $userService
+ */
 class ArticleController extends Controller
 {
-    public function __construct(
-
-    ) {
-    }
-
     public function show()
     {
-        $categories = Category::all();
-        $article = Article::find($this->request->get('id'));
+        $article = $this->articleService->getOne($this->request->get('id'));
+        $article['author'] = $this->userService->getFullArticleAuthor($article);
 
-        $article['author'] = User::select(['id', 'first_name', 'second_name', 'avatar_path'])
-            ->where('id', '=', $article['user_id'])
-            ->get()[0];
-
-        $article['category'] = Category::select(['id', 'title'])
-            ->where('id', '=', $article['category_id'])
-            ->get();
-
-        $popularArticles = Article::select(['id', 'title', 'image_path', 'created_at'])
-            ->orderBy('likes', 'DESC')
-            ->get();
+        $article['category'] = $this->categoryService->getItemInfoForFullArticle($article);
 
         return $this->view->make('single', [
-            'categories' => $categories,
+            'categories' => $this->categoryService->getAll(),
             'article' => $article,
-            'popularArticles' => $popularArticles
+            'popularArticles' => $this->articleService->getPopularItems()
         ])->render();
     }
 }

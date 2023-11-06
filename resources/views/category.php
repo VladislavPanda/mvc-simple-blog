@@ -114,66 +114,63 @@
 				</div>
 
 				<div class="col-lg-4 sidebar">
-					
-					<div class="sidebar-box search-form-wrap mb-4">
+					<!--<div class="sidebar-box search-form-wrap mb-4">
 						<form action="#" class="sidebar-search-form">
 							<span class="bi-search"></span>
 							<input type="text" class="form-control" id="s" placeholder="Type a keyword and hit enter">
 						</form>
-					</div>
+					</div>-->
 					<!-- END sidebar-box -->
 					<div class="sidebar-box">
-						<h3 class="heading">Popular Posts</h3>
+						<h3 class="heading">Популярные статьи</h3>
 						<div class="post-entry-sidebar">
 							<ul>
-								<li>
-									<a href="">
-										<img src="images/img_1_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-										<div class="text">
-											<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-											<div class="post-meta">
-												<span class="mr-2">March 15, 2018 </span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="">
-										<img src="images/img_2_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-										<div class="text">
-											<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-											<div class="post-meta">
-												<span class="mr-2">March 15, 2018 </span>
-											</div>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="">
-										<img src="images/img_3_sq.jpg" alt="Image placeholder" class="me-4 rounded">
-										<div class="text">
-											<h4>There’s a Cool New Way for Men to Wear Socks and Sandals</h4>
-											<div class="post-meta">
-												<span class="mr-2">March 15, 2018 </span>
-											</div>
-										</div>
-									</a>
-								</li>
+                                <?php
+                                    /** @var array $popularArticles */
+                                    foreach ($popularArticles as $popularArticle) {
+                                ?>
+                                        <li>
+                                            <a href="/articles/show/<?php echo $popularArticle['id']; ?>">
+                                                <img src="<?php echo $popularArticle['image_path']; ?>"
+                                                    alt="Image placeholder" class="me-4 rounded">
+                                                <div class="text">
+                                                    <h4><?php echo $popularArticle['title']; ?></h4>
+                                                    <div class="post-meta">
+                                                        <span class="mr-2">
+                                                            <?php echo $popularArticle['created_at']; ?>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                    <?php
+                                }
+                                ?>
 							</ul>
 						</div>
 					</div>
 					<!-- END sidebar-box -->
 
-					<div class="sidebar-box">
-						<h3 class="heading">Categories</h3>
-						<ul class="categories">
-							<li><a href="#">Food <span>(12)</span></a></li>
-							<li><a href="#">Travel <span>(22)</span></a></li>
-							<li><a href="#">Lifestyle <span>(37)</span></a></li>
-							<li><a href="#">Business <span>(42)</span></a></li>
-							<li><a href="#">Adventure <span>(14)</span></a></li>
-						</ul>
-					</div>
+                    <div class="sidebar-box">
+                        <h3 class="heading">Категории</h3>
+                        <ul class="categories">
+                            <?php
+                                /** @var array $categories */
+                                foreach ($categories as $category) {
+                            ?>
+                                    <li>
+                                        <a href="/categories/show/<?php echo $category['id']; ?>">
+                                            <?php echo $category['title']; ?>
+                                            <span>
+                                                (<?php echo $category['articles_num']; ?>)
+                                            </span>
+                                        </a>
+                                    </li>
+                            <?php
+                                }
+                            ?>
+                        </ul>
+                    </div>
 					<!-- END sidebar-box -->
 
 					<!--<div class="sidebar-box">
