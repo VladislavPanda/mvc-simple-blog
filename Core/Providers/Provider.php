@@ -6,6 +6,7 @@ namespace Core\Providers;
 
 use App\Providers\AppServiceProvider;
 use Core\Controllers\Controller;
+use Core\Http\Redirect;
 use Core\Http\Request;
 use Core\Validating\Validator;
 use Core\View\View;
@@ -15,6 +16,7 @@ class Provider
     public function __construct(
         private readonly Request $request,
         private readonly View $view,
+        private readonly Redirect $redirect,
         private readonly AppServiceProvider $appServiceProvider
     ) {
     }
@@ -27,6 +29,7 @@ class Provider
     {
         call_user_func([$controller, 'setRequest'], $this->request);
         call_user_func([$controller, 'setView'], $this->view);
+        call_user_func([$controller, 'setRedirect'], $this->redirect);
 
         $services = $this->appServiceProvider->register()->getServices();
 

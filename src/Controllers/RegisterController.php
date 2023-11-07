@@ -24,11 +24,13 @@ class RegisterController extends Controller
             'password_repeat' => 'min:6|max:12|=password'
         ]);
 
-        return empty($errors)
-            ? 'correct'
-            : $this->view->make('register', [
-                'categories' => $this->categoryService->getAll(),
-                'errors' => $errors
-              ])->render();
+        if (empty($errors)) {
+            $this->redirect->to('auth');
+        }
+
+        return $this->view->make('register', [
+            'categories' => $this->categoryService->getAll(),
+            'errors' => $errors
+        ])->render();
     }
 }
