@@ -30,6 +30,10 @@ class CategoryService
         return $articles;
     }
 
+    /**
+     * @param array $article
+     * @return array
+     */
     public function getItemInfoForFullArticle(array $article): array
     {
         return Category::select(['id', 'title'])->where('id', '=', $article['category_id'])->get()[0];

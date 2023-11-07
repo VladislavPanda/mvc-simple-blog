@@ -2,8 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\Article;
-use App\Services\ArticleService;
 use Core\Controllers\Controller;
 
 /**

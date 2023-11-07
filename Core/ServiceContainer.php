@@ -10,6 +10,7 @@ use Core\Http\Request;
 use Core\Http\Response;
 use Core\Providers\Provider;
 use Core\Routing\Router;
+use Core\Validating\Validator;
 use Core\View\View;
 
 class ServiceContainer

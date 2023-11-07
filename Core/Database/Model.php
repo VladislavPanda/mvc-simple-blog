@@ -67,6 +67,8 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     protected string $orderBy = '';
 
+    //protected
+
     /**
      * @var PDO
      */
@@ -183,10 +185,23 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
         return $this;
     }
 
+    /**
+     * @param int $number
+     * @return $this
+     */
     public function limit(int $number): Model
     {
         $this->limit = $number > 0 ? $number : '';
 
+        return $this;
+    }
+
+    /**
+     * @param string $param
+     * @return $this
+     */
+    public function like(string $param): Model
+    {
         return $this;
     }
 
@@ -197,6 +212,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     {
         $params = [];
         $queryString = $this->createQueryBuilder()->makeSelect();
+        //$queryString = "SELECT * FROM articles WHERE title LIKE '%патче%'";
         $sth = $this->connection->prepare($queryString);
 
         if (! empty($this->conditions)) {

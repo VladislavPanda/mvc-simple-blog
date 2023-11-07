@@ -9,12 +9,10 @@ use Core\Controllers\Controller;
 /**
  * @property $categoryService
  */
-class AboutController extends Controller
+class AuthController extends Controller
 {
     public function index()
     {
-        return $this->view->make('about', [
-            'categories' => $this->categoryService->getAll()
-        ])->render();
+        return $this->view->make('auth', ['categories' => $this->categoryService->getAll()])->render();
     }
 }

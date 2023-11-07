@@ -2,11 +2,6 @@
 
 namespace App\Controllers;
 
-use App\Models\Article;
-use App\Models\Category;
-use App\Models\User;
-use App\Services\ArticleService;
-use App\Services\CategoryService;
 use Core\Controllers\Controller;
 
 /**
@@ -20,7 +15,6 @@ class ArticleController extends Controller
     {
         $article = $this->articleService->getOne($this->request->get('id'));
         $article['author'] = $this->userService->getFullArticleAuthor($article);
-
         $article['category'] = $this->categoryService->getItemInfoForFullArticle($article);
 
         return $this->view->make('single', [
@@ -28,5 +22,12 @@ class ArticleController extends Controller
             'article' => $article,
             'popularArticles' => $this->articleService->getPopularItems()
         ])->render();
+    }
+
+    public function search()
+    {
+        $title = $this->request->post('title');
+
+        echo $title;
     }
 }

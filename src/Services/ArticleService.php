@@ -8,6 +8,10 @@ use App\Models\Article;
 
 class ArticleService
 {
+    /**
+     * @param int $id
+     * @return array
+     */
     public function getOne(int $id): array
     {
         return Article::find($id);

@@ -33,16 +33,16 @@
                                         ?>
                                     </ul>
                                 </li>
-                                <li><a href="">Авторизация</a></li>
-                                <li><a href="">Регистрация</a></li>
+                                <li><a href="/auth">Авторизация</a></li>
+                                <li><a href="/register">Регистрация</a></li>
                             </ul>
                         </div>
                         <div class="col-2 text-end">
                             <a href="#" class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
                                 <span></span>
                             </a>
-                            <form action="#" class="search-form d-none d-lg-inline-block">
-                                <input type="text" class="form-control" placeholder="Найти статью...">
+                            <form action="/articles/search" class="search-form d-none d-lg-inline-block" method="POST">
+                                <input type="text" class="form-control" name="title" placeholder="Найти статью...">
                                 <span class="bi-search"></span>
                             </form>
                         </div>

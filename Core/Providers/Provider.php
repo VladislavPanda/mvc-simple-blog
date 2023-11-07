@@ -7,6 +7,7 @@ namespace Core\Providers;
 use App\Providers\AppServiceProvider;
 use Core\Controllers\Controller;
 use Core\Http\Request;
+use Core\Validating\Validator;
 use Core\View\View;
 
 class Provider
@@ -24,8 +25,8 @@ class Provider
      */
     public function register(Controller $controller): void
     {
-        call_user_func([$controller, 'setView'], $this->view);
         call_user_func([$controller, 'setRequest'], $this->request);
+        call_user_func([$controller, 'setView'], $this->view);
 
         $services = $this->appServiceProvider->register()->getServices();
 
