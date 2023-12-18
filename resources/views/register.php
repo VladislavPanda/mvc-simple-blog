@@ -56,7 +56,7 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <div class="heading">
-                    <form action="/register/submit" method="POST" enctype="multipart/form-data">
+                    <form action="/register" method="POST" enctype="multipart/form-data">
                         <div class="form-group row">
                             <label for="email" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">

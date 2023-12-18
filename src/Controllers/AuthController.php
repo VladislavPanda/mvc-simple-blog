@@ -16,7 +16,7 @@ class AuthController extends Controller
         return $this->view->make('auth', ['categories' => $this->categoryService->getAll()])->render();
     }
 
-    public function submit()
+    public function store()
     {
         $errors = $this->request->validate([
             'login' => 'min:6',

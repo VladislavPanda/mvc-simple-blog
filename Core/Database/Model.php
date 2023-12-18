@@ -6,6 +6,7 @@ namespace Core\Database;
 
 use Core\Contracts\Database\RepositoryInterface;
 use Core\Contracts\Database\QueryComponentsInterface;
+use Core\Exceptions\Filesystem\FileNotFoundException;
 use PDO;
 use Carbon\Carbon;
 
@@ -42,9 +43,9 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      * List of fields from the Select operation
      *
      *
-     * @var array|string
+     * @var array|string|null
      */
-    protected array|string $selectedFields;
+    protected array|string|null $selectedFields;
 
     /**
      * List of conditions
@@ -67,7 +68,10 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     protected string $orderBy = '';
 
-    //protected
+    /**
+     * @var array
+     */
+    protected array $insertedFields = [];
 
     /**
      * @var PDO
@@ -79,16 +83,21 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      */
     protected string $timestamps = 'd.m.Y';
 
+    /**
+     * @throws FileNotFoundException
+     */
     public function __construct(
         $operation = null,
         $selectMethod = 'select',
         $selectedFields = '*',
-        $conditions = []
+        $conditions = [],
+        $insertedFields = []
     ) {
         $this->operation = $operation;
         $this->selectMethod = $selectMethod;
         $this->selectedFields = $selectedFields;
         $this->conditions = $conditions;
+        $this->insertedFields = $insertedFields;
         $this->connection = DBConnector::getInstance()->getConnection();
     }
 
@@ -97,10 +106,11 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      *
      * @param array|string $fields
      * @return $this
+     * @throws FileNotFoundException
      */
     public static function select(array|string $fields = '*'): Model
     {
-        return new static('select', 'select', !is_array($fields) ? [$fields] : $fields);
+        return new static('select', 'select', (array) $fields);
     }
 
     /**
@@ -108,10 +118,13 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      *
      * @param array $record
      * @return int
+     * @throws FileNotFoundException
      */
     public static function create(array $record): int
     {
-        return 0;
+        $obj = (new static('insert', 'insert', insertedFields: $record))->insert();
+
+        return 1;
     }
 
     /**
@@ -152,6 +165,7 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
      *
      * @param int $id
      * @return array
+     * @throws FileNotFoundException
      */
     public static function find(int $id): array
     {
@@ -212,20 +226,32 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     {
         $params = [];
         $queryString = $this->createQueryBuilder()->makeSelect();
-        //$queryString = "SELECT * FROM articles WHERE title LIKE '%патче%'";
-        $sth = $this->connection->prepare($queryString);
+        $statement = $this->connection->prepare($queryString);
 
         if (! empty($this->conditions)) {
             $params = $this->createStatementParamsCreator($queryString)->process();
         }
 
-        $sth->execute($params);
+        $statement->execute($params);
 
-        $queryResult = $this->getTimestampsAttributes($sth->fetchAll());
+        $queryResult = $this->getTimestampsAttributes($statement->fetchAll());
 
         return $this->selectMethod == 'find'
             ? $queryResult[0]
             : $queryResult;
+    }
+
+    /**
+     * @return int|false
+     */
+    protected function insert(): int|false
+    {
+        $queryString = $this->createQueryBuilder()->makeInsert();
+        echo $queryString;
+        $statement = $this->connection->prepare($queryString);
+        //$statement->execute($this->insertedFields);
+
+        return (int) $this->connection->lastInsertId();
     }
 
     /**
@@ -332,5 +358,13 @@ abstract class Model implements RepositoryInterface, QueryComponentsInterface
     public function getOrderBy(): string
     {
         return $this->orderBy;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInsertedFields(): array
+    {
+        return $this->insertedFields;
     }
 }

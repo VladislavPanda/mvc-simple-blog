@@ -16,10 +16,10 @@ return [
     Route::get('/categories/show/{$id}', [CategoryController::class, 'show']),
     Route::get('/articles', [ArticleController::class, 'index']),
     Route::get('/articles/show/{$id}', [ArticleController::class, 'show']),
-    Route::post('/articles/search', [ArticleController::class, 'search']),
-    Route::post('/article/add', [ArticleController::class, 'save']),
+    //Route::post('/articles/search', [ArticleController::class, 'search']),
+    //Route::post('/article/add', [ArticleController::class, 'save']),
     Route::get('/auth', [AuthController::class, 'index']),
-    Route::post('/auth/submit', [AuthController::class, 'submit']),
+    Route::post('/auth', [AuthController::class, 'store']),
     Route::get('/register', [RegisterController::class, 'index']),
-    Route::post('/register/submit', [RegisterController::class, 'submit'])
+    Route::post('/register', [RegisterController::class, 'store'])
 ];

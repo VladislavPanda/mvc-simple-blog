@@ -31,6 +31,9 @@ class QueryBuilder implements MakeCrudQueryInterface
         $this->queryComponentsModifiers = $this->initModifiers();
     }
 
+    /**
+     * @return string
+     */
     public function makeSelect(): string
     {
         $queryString = 'SELECT ';
@@ -42,9 +45,15 @@ class QueryBuilder implements MakeCrudQueryInterface
         return $queryString;
     }
 
+    /**
+     * @return string
+     */
     public function makeInsert(): string
     {
-        return '';
+
+
+        return 'INSERT INTO ' . $this->model->getTable() . ' (' . implode(', ', $this->model->getFields()) . ')
+            VALUES (' . rtrim(str_repeat('?, ', count($this->model->getFields())), ', ') . ')';
     }
 
     public function makeUpdate(): string
