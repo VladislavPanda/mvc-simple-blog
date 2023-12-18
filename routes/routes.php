@@ -19,6 +19,7 @@ return [
     Route::post('/articles/search', [ArticleController::class, 'search']),
     Route::post('/article/add', [ArticleController::class, 'save']),
     Route::get('/auth', [AuthController::class, 'index']),
+    Route::post('/auth/submit', [AuthController::class, 'submit']),
     Route::get('/register', [RegisterController::class, 'index']),
     Route::post('/register/submit', [RegisterController::class, 'submit'])
 ];

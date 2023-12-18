@@ -24,7 +24,7 @@ class Request
      */
     public static function createFromSuperGlobals(): static
     {
-        return new static($_SERVER, $_GET, $_POST, $_FILES, $_COOKIE);
+        return new self($_SERVER, $_GET, $_POST, $_FILES, $_COOKIE);
     }
 
     /**

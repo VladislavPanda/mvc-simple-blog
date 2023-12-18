@@ -10,7 +10,8 @@ class Validator implements ValidatorInterface
 {
     public function __construct(
         private readonly array $postData,
-        private readonly array $rules
+        private readonly array $rules,
+        private array $fields = []
     ) {
     }
 
@@ -20,11 +21,17 @@ class Validator implements ValidatorInterface
     public function process(): array
     {
         $errors = [];
+        $this->setFields(array_keys($this->rules));
+
         foreach ($this->rules as $field => $ruleSet) {
             $ruleSetExploded = explode('|', $ruleSet);
 
+            list($originalFieldName, $customizedFieldName) = str_contains($field, '|')
+                ? explode('|', $field)
+                : [$field, $field];
+
             foreach ($ruleSetExploded as $rule) {
-                $errors = $this->validateField($field, $rule, $errors);
+                $errors = $this->validateField($originalFieldName, $customizedFieldName, $rule, $errors);
             }
         }
 
@@ -32,12 +39,18 @@ class Validator implements ValidatorInterface
     }
 
     /**
-     * @param string $field
+     * @param string $originalFieldName
+     * @param string $customizedFieldName
      * @param string $rule
      * @param array $errors
      * @return array
      */
-    private function validateField(string $field, string $rule, array $errors): array
+    private function validateField(
+        string $originalFieldName,
+        string $customizedFieldName,
+        string $rule,
+        array  $errors
+    ): array
     {
         if (str_contains($rule, ':')) {
             list($ruleParam, $ruleValue) = explode(':', $rule);
@@ -49,24 +62,41 @@ class Validator implements ValidatorInterface
         switch ($ruleParam)
         {
             case 'min':
-                if (strlen($this->postData[$field]) < $ruleValue) {
-                    $errors[] = "Длина поля $field должна быть не менее $ruleValue символов";
+                if (strlen($this->postData[$originalFieldName]) < $ruleValue) {
+                    $errors[] = "Длина поля $customizedFieldName должна быть не менее $ruleValue символов";
                 }
             break;
 
             case 'max':
-                if (strlen($this->postData[$field]) > $ruleValue) {
-                    $errors[] = "Длина поля $field должна быть не более $ruleValue символов";
+                if (strlen($this->postData[$originalFieldName]) > $ruleValue) {
+                    $errors[] = "Длина поля $customizedFieldName должна быть не более $ruleValue символов";
                 }
             break;
 
             case '=':
-                if ($this->postData[$field] != $this->postData[$ruleValue]) {
-                    $errors[] = "Пароли не совпадают";
+                if ($this->postData[$originalFieldName] != $this->postData[$ruleValue]) {
+                    $comparedField = $this->fields[$ruleValue] ?? $ruleValue;
+                    $errors[] = "Поля $customizedFieldName и $comparedField не совпадают";
                 }
             break;
         }
 
         return $errors;
+    }
+
+    /**
+     * @param array $fields
+     * @return void
+     */
+    private function setFields(array $fields): void
+    {
+        foreach ($fields as $field) {
+            if (str_contains($field, '|')) {
+                $fieldSetExploded = explode('|', $field);
+                $this->fields[$fieldSetExploded[0]] = $fieldSetExploded[1];
+            } else {
+                $this->fields[] = $field;
+            }
+        }
     }
 }

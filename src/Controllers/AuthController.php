@@ -15,4 +15,14 @@ class AuthController extends Controller
     {
         return $this->view->make('auth', ['categories' => $this->categoryService->getAll()])->render();
     }
+
+    public function submit()
+    {
+        $errors = $this->request->validate([
+            'login' => 'min:6',
+            'password' => 'min:6|max:12'
+        ]);
+
+
+    }
 }

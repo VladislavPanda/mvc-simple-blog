@@ -11,7 +11,7 @@ use Core\Http\Request;
 use Core\Http\Response;
 use Core\Providers\Provider;
 use Core\Routing\Router;
-use Core\Validating\Validator;
+use Core\Session\Session;
 use Core\View\View;
 
 class ServiceContainer
@@ -21,6 +21,9 @@ class ServiceContainer
      */
     public array $services;
 
+    /**
+     * @throws ClassNotFoundException
+     */
     public function __construct()
     {
         $this->initServices();
@@ -29,7 +32,7 @@ class ServiceContainer
     /**
      * @param string $name
      * @return object
-     * @throws \Core\Exceptions\Filesystem\ClassNotFoundException
+     * @throws ClassNotFoundException
      */
     public function getService(string $name): object
     {
@@ -42,7 +45,7 @@ class ServiceContainer
 
     /**
      * @return void
-     * @throws \Core\Exceptions\Filesystem\ClassNotFoundException
+     * @throws ClassNotFoundException
      */
     private function initServices(): void
     {
@@ -50,11 +53,13 @@ class ServiceContainer
         $this->services[View::class] = new View();
         $this->services[Response::class] = new Response();
         $this->services[Redirect::class] = new Redirect();
+        $this->services[Session::class] = new Session();
         $this->services[AppServiceProvider::class] = new AppServiceProvider();
         $this->services[Provider::class] = new Provider(
             $this->getService(Request::class),
             $this->getService(View::class),
             $this->getService(Redirect::class),
+            //$this->getService(Session::class),
             $this->getService(AppServiceProvider::class)
         );
         $this->services[Router::class] = new Router(

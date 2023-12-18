@@ -19,9 +19,9 @@ class RegisterController extends Controller
     public function submit()
     {
         $errors = $this->request->validate([
-            'login' => 'min:6',
-            'password' => 'min:6|max:12',
-            'password_repeat' => 'min:6|max:12|=password'
+            'login' => 'min:6', // |Логин
+            'password' => 'min:6|max:12', // |Пароль
+            'password_repeat' => 'min:6|max:12|=password' // |Подтверждение пароля
         ]);
 
         if (empty($errors)) {

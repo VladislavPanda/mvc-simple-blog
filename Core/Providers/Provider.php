@@ -8,6 +8,7 @@ use App\Providers\AppServiceProvider;
 use Core\Controllers\Controller;
 use Core\Http\Redirect;
 use Core\Http\Request;
+use Core\Session\Session;
 use Core\Validating\Validator;
 use Core\View\View;
 
@@ -17,6 +18,7 @@ class Provider
         private readonly Request $request,
         private readonly View $view,
         private readonly Redirect $redirect,
+        //private readonly Session $session,
         private readonly AppServiceProvider $appServiceProvider
     ) {
     }
@@ -30,6 +32,7 @@ class Provider
         call_user_func([$controller, 'setRequest'], $this->request);
         call_user_func([$controller, 'setView'], $this->view);
         call_user_func([$controller, 'setRedirect'], $this->redirect);
+        //call_user_func([$controller, 'setSession'], $this->session);
 
         $services = $this->appServiceProvider->register()->getServices();
 
